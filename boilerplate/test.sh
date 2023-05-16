@@ -55,5 +55,27 @@ echo 027 check whats on the file with more
 more index.js
 echo 028 switch to the original has folder
 cd ../
-echo 029 switc to the node_modules folder
+echo 029 switch to the node_modules folder
 cd ../
+echo 030 switch two folders prior to the project folder
+cd ../../
+echo 031 list all files in the project folder
+ls
+echo 032 clear the terminal
+clear
+echo 033 create a new folder called website with mkdir
+mkdir website/
+echo 034 list whats in the folder to make sute it got created
+ls
+echo 035 change the cd to website
+cd website/
+echo 036 list the contents on the folder 
+ls
+echo 037 as the folder is new, theres nothing in it use echo to print a message on the terminal
+echo hello website
+echo 038 create a html file index.html with touch
+touch index.html
+echo 039 create a css file styles.css with touch
+touch styes.css
+echo 040 list the contents on the folder
+ls
