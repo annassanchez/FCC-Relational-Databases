@@ -32,11 +32,14 @@
     cd freeCodeCamp/
     ```
     
-- 04_
+- 04_ `pwd`∫
     
     You are in the `freecodecamp` folder now. You may have noticed that the prompt changed to include it. Print the working directory of the `freeCodeCamp` folder to see the full path of where you are.
+    ```bash
+    pwd
+    ```
     
-- 05_
+- 05_ `ls`
     
     You can see the path of the `freeCodeCamp` folder. It's in the `project` folder you were just in. List the contents of the `freeCodeCamp` folder to see what's here.
     
@@ -44,7 +47,7 @@
     ls
     ```
     
-- 06_
+- 06_ `cd`
     
     There's two folders and three files here. The folders are blue and the files include their extension. Next, change to that `test` directory.
     
@@ -52,7 +55,7 @@
     cd test/
     ```
     
-- 07_
+- 07_ `pwd`
     
     You can see you are in the `test` folder now. It shows `test` in the prompt. Print the full path of this directory. Remember that "folder" and "directory" are the same thing.
     
@@ -60,7 +63,7 @@
     pwd
     ```
     
-- 08_
+- 08_ `ls`
     
     That's the path to the `test` folder, it's in the `freeCodeCamp` folder. **List** the contents of this folder.
     
@@ -68,15 +71,7 @@
     ls
     ```
     
-- 09_
-    
-    That's the path to the `test` folder, it's in the `freeCodeCamp` folder. **List** the contents of this folder.
-    
-    ```bash
-    ls
-    ```
-    
-- 10_ `cd ..`
+- 09_ `cd ..`
     
     These are all files. There's no more folders to go into here. You can use `cd ..` to go back a folder level. The two dots will take you back one level. Go back to the `freeCodeCamp` folder.
     
@@ -84,7 +79,7 @@
     cd ..
     ```
     
-- 11_
+- 10_
     
     `test` got removed from the prompt since you left that folder and you're back in the `freeCodeCamp` folder. List the contents of what's here to remind yourself.
     
@@ -92,7 +87,7 @@
     ls
     ```
     
-- 12_ `more`
+- 11_ `more`
     
     There's the `test` folder you were just in. You can see what's in a file with `more <filename>`. Use it to view what's in the `package.json` file.
     
@@ -100,7 +95,7 @@
     more package.json
     ```
     
-- 13_ `clear`
+- 12_ `clear`
     
     It looks like a JSON object. You can empty the terminal with `clear`. The terminal looks a little cluttered, why don't you clear it.
     
@@ -108,7 +103,7 @@
     clear
     ```
     
-- 14_
+- 13_
     
     Now you have a fresh screen 😄 List what's in here again.
     
@@ -116,7 +111,7 @@
     ls
     ```
     
-- 15_
+- 14_
     
     You checked out the `test` folder and the `package.json` file. What next? Why don't you go into that `node_modules` directory.
     
@@ -124,7 +119,7 @@
     cd node_modules/
     ```
     
-- 16_
+- 15_ `ls`
     
     Now the prompt includes `node_modules` since that's where you are. List what's in the folder.
     
@@ -132,7 +127,7 @@
     ls
     ```
     
-- 17_
+- 16_ `ls -l`
     
     That's a lot of folders. You can add a **flag** to a command to use it different ways like this: `ls <flag>`. List the contents of the `node_modules` folder in "long list format". Do that by adding the `-l` flag to the "list" command.
     
@@ -140,7 +135,7 @@
     ls -l
     ```
     
-- 18_
+- 17_ `cd has/' 
     
     It is showing more details about each item in here and it's a little easier to read. One of the folders is named `has`, why don't you change into it.
     
@@ -148,7 +143,7 @@
     cd has/
     ```
     
-- 19_
+- 18_
     
     You are now in the `has` folder. List its contents.
     
@@ -156,7 +151,7 @@
     ls
     ```
     
-- 20_
+- 19_
     
     There's a few files and folders here. Can you tell the difference? Take a look at **more** of that `README.md` file.
     
@@ -164,7 +159,7 @@
     more README.md
     ```
     
-- 21_
+- 20_
     
     Nothing noteworthy in there. You can't see what's in the here anymore, list the contents again.
     
@@ -172,7 +167,7 @@
     ls
     ```
     
-- 22_
+- 21_
     
     That one file doesn't appear to have an extension. Strange. Take a look at **more** of the that "license" file that doesn't show an extension.
     
