@@ -41,3 +41,19 @@ echo 020 check the contents of the folder again
 ls
 echo 021 check the license file that doesnt have an axtension
 more LICENSE-MIT
+echo 022 clear all the results
+clear
+echo 023 list again the items in the folder
+ls
+echo 024 switch into src/ directory
+cd src/
+echo 025 view the full path
+pwd
+echo 026 list elements within this folder
+ls
+echo 027 check whats on the file with more
+more index.js
+echo 028 switch to the original has folder
+cd ../
+echo 029 switc to the node_modules folder
+cd ../

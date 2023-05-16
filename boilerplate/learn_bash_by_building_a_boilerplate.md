@@ -79,7 +79,7 @@
     cd ..
     ```
     
-- 10_
+- 10_ `ls`
     
     `test` got removed from the prompt since you left that folder and you're back in the `freeCodeCamp` folder. List the contents of what's here to remind yourself.
     
@@ -103,7 +103,7 @@
     clear
     ```
     
-- 13_
+- 13_ `ls`
     
     Now you have a fresh screen 😄 List what's in here again.
     
@@ -111,7 +111,7 @@
     ls
     ```
     
-- 14_
+- 14_ `cd`
     
     You checked out the `test` folder and the `package.json` file. What next? Why don't you go into that `node_modules` directory.
     
@@ -135,7 +135,7 @@
     ls -l
     ```
     
-- 17_ `cd has/' 
+- 17_ `cd has/` 
     
     It is showing more details about each item in here and it's a little easier to read. One of the folders is named `has`, why don't you change into it.
     
@@ -143,7 +143,7 @@
     cd has/
     ```
     
-- 18_
+- 18_ `ls`
     
     You are now in the `has` folder. List its contents.
     
@@ -151,7 +151,7 @@
     ls
     ```
     
-- 19_
+- 19_ `more`
     
     There's a few files and folders here. Can you tell the difference? Take a look at **more** of that `README.md` file.
     
@@ -159,7 +159,7 @@
     more README.md
     ```
     
-- 20_
+- 20_ `ls`
     
     Nothing noteworthy in there. You can't see what's in the here anymore, list the contents again.
     
@@ -167,7 +167,7 @@
     ls
     ```
     
-- 21_
+- 21_ `more`
     
     That one file doesn't appear to have an extension. Strange. Take a look at **more** of the that "license" file that doesn't show an extension.
     
@@ -175,7 +175,7 @@
     more LICENSE-MIT
     ```
     
-- 23_
+- 22_ `clear`
     
     Pretend you read all that. It looks a little messy in here again so why don't you clear the terminal.
     
@@ -183,7 +183,7 @@
     clear
     ```
     
-- 24_
+- 23_ `ls`
     
     Better. Remind yourself what's in here with the list command.
     
@@ -191,7 +191,7 @@
     ls
     ```
     
-- 25_
+- 24_ `cd`
     
     Go into that `src` directory to see what you can find in there.
     
@@ -199,7 +199,7 @@
     cd src/
     ```
     
-- 26_
+- 25_ `pwd`
     
     View the full path of this folder.
     
@@ -207,7 +207,7 @@
     pwd
     ```
     
-- 27_
+- 26_ `ls`
     
     Getting deeper still. You can see that each new folder has a `/` in front of it. Take a look at what's in this folder.
     
@@ -215,7 +215,7 @@
     ls
     ```
     
-- 28_
+- 27_ `more`
     
     Only one file here. Show me what's in it with `more`.
     
