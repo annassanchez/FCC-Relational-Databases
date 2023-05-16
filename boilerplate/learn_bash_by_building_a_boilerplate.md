@@ -223,7 +223,7 @@
     more index.js
     ```
     
-- 29_
+- 28_ `cd`
     
     It's some JavaScript 😄 I think you've fooled around enough. Why don't you navigate out of here. Change back to the `has` directory.
     
@@ -231,7 +231,7 @@
     cd ..
     ```
     
-- 30_
+- 29_ `cd`
     
     You're getting pretty good. Change back to the `node_modules` directory.
     
@@ -239,7 +239,7 @@
     cd ..
     ```
     
-- 31_ `cd ../..`
+- 30_ `cd ../..`
     
     You can go back two folders with `cd ../..`. Each set of dots represents another folder level. Go back to the `project` directory from the `node_modules` directory.
     
@@ -247,7 +247,7 @@
     cd ../..
     ```
     
-- 32_
+- 31_ `ls`
     
     You are back in the `project` folder where you started. List what's in here again.
     
@@ -255,7 +255,7 @@
     ls
     ```
     
-- 33_
+- 32_ `clear`
     
     That's right. Why don't you get a fresh start by clearing the terminal.
     
@@ -263,7 +263,7 @@
     clear
     ```
     
-- 34_ `mkdir`
+- 33_ `mkdir`
     
     You will be making a website boilerplate. You can make a new folder with `mkdir <folder_name>`. `mkdir` stands for "make directory". Make a `website` directory in this `project` folder. Remember that "directory" and "folder" mean the same thing.
     
@@ -271,7 +271,7 @@
     mkdir website/
     ```
     
-- 35_
+- 34_ `ls`
     
     List what's here to make sure it got created.
     
@@ -279,7 +279,7 @@
     ls
     ```
     
-- 36_
+- 35_ `cd`
     
     It worked. The website files will be in the new directory. Change to the `website` directory so you can start creating them.
     
@@ -287,7 +287,7 @@
     cd website/
     ```
     
-- 37_
+- 36_ `ls`
     
     List the contents of the `website` folder.
     
@@ -295,7 +295,7 @@
     ls
     ```
     
-- 38_
+- 37_ `echo`
     
     It's brand new, there's nothing in it yet. The `echo` command lets you print anything to the terminal. You used it in the 
     first lesson. Just type what you want to print after it. Use it to print `hello website` to the terminal.
@@ -304,7 +304,7 @@
     echo hello website
     ```
     
-- 39_ `touch`
+- 38_ `touch`
     
     Websites usually have an `index.html` file. You can use `touch <filename>` to create a new file. Create `index.html` in the `website` folder.
     
@@ -312,7 +312,7 @@
     touch index.html
     ```
     
-- 40_
+- 39_ `touch`
     
     They usually have a CSS file as well. Create `styles.css` in the `website` folder using the same method.
     
@@ -320,7 +320,7 @@
     touch styles.css
     ```
     
-- 41_
+- 40_
     
     List the contents of the `website` folder to make sure they got created.
     
