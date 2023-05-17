@@ -139,3 +139,43 @@ echo 069 copy footer.jpeg to the images folder
 cp footer.jpeg images/
 echo 070 all the images should be copied so lets move folders to check it
 cd images/
+echo 071 list elements in folder 
+ls
+echo 072 go back to the website folder
+cd ..
+echo 073 list elements in the website folder to know which ones you need to remove
+ls
+echo 074 remove header.png from website folder, as is has been copied to the images folder
+rm header.png
+echo 075 remove footer.jpg from website folder
+rm footer.jpg
+echo 076 list contents from the website folder
+ls
+echo 077 to switch extensions from already created files use mv. change roboto.font to roboto.woff
+mv roboto.font roboto.woff
+echo 078 list elements in website folder to see if the extension changed
+ls
+echo 079 change the extension from lato.font to lato.ttf with mv
+mv lato.font lato.ttf
+echo 080 change the extension from menlo.font to mento.otf with mv
+mv menlo.font menlo.otf
+echo 081 list elements in the folder to see the changes
+ls
+echo 082 create a fonts folder
+mkdir fonts/
+echo 083 list elements from the website folder to see the newly created folder
+ls
+echo 084 use mv to move the font file roboto.woff to the fonts folder
+mv roboto.woff fonts/
+echo 085 you can use find to see the file tree
+find
+echo 086 use mv to move the lato.ttf file to the fonts folder
+mv lato.ttf fonts/
+echo 087 use mv to move the mento.otf file to the fonts folder
+mv menlo.otf fonts/
+echo 088 use find to list the whole file tree and make sure they got moved
+find
+echo 089 create a new folder called client in the wbsite folder 
+mkdir client/
+echo 090 create a new folder within the folder client created
+mkdir client/src/
