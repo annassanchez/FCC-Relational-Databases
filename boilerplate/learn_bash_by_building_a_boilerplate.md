@@ -320,7 +320,7 @@
     touch styles.css
     ```
     
-- 40_
+- 40_ `ls`
     
     List the contents of the `website` folder to make sure they got created.
     
@@ -328,7 +328,7 @@
     ls
     ```
     
-- 42_
+- 41_ `touch`
     
     There they are. Next is a JavaScript file. Create `index.js` in the `website` folder with the method you have been using.
     
@@ -336,7 +336,7 @@
     touch index.js
     ```
     
-- 43_
+- 42_ `touch`
     
     You might turn this into a git repository. Create `.gitignore` in the `website` folder with the same method.
     
@@ -344,7 +344,7 @@
     touch .gitignore
     ```
     
-- 44_
+- 43_ `ls`
     
     List the contents of the `website` folder to see your new files.
     
@@ -352,7 +352,7 @@
     ls
     ```
     
-- 45_
+- 44_ `ls --help`
     
     There's three files, but where's the `.gitignore` file? I think it's hidden. Most commands have a `--help` flag to show what the command can do. Display the "help" menu for the `ls` command. Here's an example: `command <flag>`
     
@@ -360,7 +360,7 @@
     ls --help
     ```
     
-- 46_ `ls -a`
+- 45_ `ls -a`
     
     Scroll through the menu to see the flags that go with `ls`. The flag you are looking for is `--all`, or `-a` for short. List **all** the contents of the `website` folder using the correct flag.
     
@@ -368,7 +368,7 @@
     ls -a
     ```
     
-- 47_ `cd .`
+- 46_ `cd .`
     
     There's the hidden file. Do you see it? It didn't display before. It also includes `.` and `..`. You used `cd ..` to go back a folder earlier. Change to the `.` directory.
     
@@ -376,7 +376,7 @@
     cd .
     ```
     
-- 48_
+- 47_ `touch`
     
     You didn't go anywhere. The `.` takes you to the folder you are in, and `..` takes you back, or up, a folder. Websites need some images. Create `background.jpg` in the `website` folder.
     
@@ -384,7 +384,7 @@
     touch background.jpg
     ```
     
-- 49_
+- 48_ `touch`
     
     Next, add a header image. Create `header.png` in the `website` folder.
     
@@ -392,7 +392,7 @@
     touch header.png
     ```
     
-- 50_
+- 49_ `touch`
     
     Finally, create `footer.jpeg` in the `website` folder.
     
@@ -400,7 +400,7 @@
     touch footer.jpeg
     ```
     
-- 51_
+- 50_ `ls`
     
     Use the **list** command to check out the images you just added.
     
@@ -408,7 +408,7 @@
     ls
     ```
     
-- 52_
+- 51_ `touch`
     
     Looks like images show up in pink. There's also three fonts to use for the website. The first one is "roboto". Create `roboto.font` in the `website` folder.
     
@@ -416,7 +416,7 @@
     touch roboto.font
     ```
     
-- 53_
+- 52_ `touch`
     
     The next one is "lato". Create `lato.font` in the `website` folder.
     
@@ -424,7 +424,7 @@
     touch lato.font
     ```
     
-- 54_
+- 53_ `touch`
     
     Lastly, create `menlo.font` in the `website` folder.
     
@@ -432,7 +432,7 @@
     touch menlo.font
     ```
     
-- 55_
+- 54_ `ls`
     
     List the contents of this folder to see your new font files.
     
@@ -440,7 +440,7 @@
     ls
     ```
     
-- 56_
+- 55_ `touch`
     
     Your three font files are there. There's three icons for the website as well. Create `CodeAlly.svg` in the `website` folder.
     
@@ -448,7 +448,7 @@
     touch CodeAlly.svg
     ```
     
-- 57_
+- 56_ `touch`
     
     Next, create `CodeRoad.svg` in the `website` folder.
     
@@ -456,7 +456,7 @@
     touch CodeRoad.svg
     ```
     
-- 58_
+- 57_ `touch`
     
     Finally, create `freeCodeCamp.svg` in the `website` folder.
     
@@ -464,7 +464,7 @@
     touch freeCodeCamp.svg
     ```
     
-- 59_
+- 58_ `ls`
     
     Check out the new icons you just added by listing the contents of the folder they are in.
     
@@ -472,7 +472,7 @@
     ls
     ```
     
-- 60_
+- 59_ `mkdir`
     
     The icons are pink as well. I think the images should go in a separate folder to clean it up a little. Make an `images` directory in the `website` folder to put them in.
     
@@ -480,7 +480,7 @@
     mkdir images
     ```
     
-- 61_
+- 60_ `ls`
     
     List the contents of the `website` folder to make sure your new folder is there.
     
@@ -488,7 +488,7 @@
     ls
     ```
     
-- 62_
+- 61_ `cp`
     
     There's your new `images` folder. It's blue. You can copy a file with `cp <file> <destination>`. `cp` stands for "copy". Copy `background.jpg` to your `images` folder.
     
@@ -496,7 +496,7 @@
     cp background.jpg images/
     ```
     
-- 63_
+- 62_
     
     Better make sure it worked. Change to the `images` directory.
     
@@ -504,15 +504,15 @@
     cd images/
     ```
     
-- 64_
-    
+- 63_ `ls`
+     
     List the contents to see if `background.jpg` is here.
     
     ```bash
     ls
     ```
     
-- 65_
+- 64_ `cd`
     
     There it is. Looks like the copy worked. Change back to the `website` directory so you can copy the other ones.
     
@@ -520,7 +520,7 @@
     cd ..
     ```
     
-- 66_
+- 65_ `ls`
     
     Remind yourself of the files here by listing the contents.
     
@@ -528,7 +528,7 @@
     ls
     ```
     
-- 67_
+- 66_ `rm`
     
     You copied the background image to the `images` folder so you don't need the one here anymore. You can remove a file with `rm <filename>`. Remove `background.jpg` from the `website` folder.
     
@@ -536,7 +536,7 @@
     rm background.jpg
     ```
     
-- 68_
+- 67_ `ls`
     
     List the contents to make sure it's gone.
     
@@ -544,7 +544,7 @@
     ls
     ```
     
-- 69_
+- 68_ `cp`
     
     Okay, it's gone. Next, copy `header.png` to the `images` folder.
     
@@ -552,7 +552,7 @@
     cp header.png images/
     ```
     
-- 70_
+- 69_ `cp`
     
     Last, copy the "footer" image to the `images` folder.
     
@@ -560,7 +560,7 @@
     cp footer.jpeg images/
     ```
     
-- 71_
+- 70_ `cd`
     
     All the images should be copied over. Change to the `images` directory so you can make sure.
     
