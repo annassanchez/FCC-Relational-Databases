@@ -568,7 +568,7 @@
     cd images/
     ```
     
-- 72_
+- 71_ `ls`
     
     Check if the images are here by listing the contents.
     
@@ -576,7 +576,7 @@
     ls
     ```
     
-- 73_
+- 72_ `cd`
     
     They all made it here. Go back to the `website` folder so you can delete the original files.
     
@@ -584,7 +584,7 @@
     cd ..
     ```
     
-- 74_
+- 73_ `ls`
     
     List the contents to remind yourself of the filenames to delete.
     
@@ -592,7 +592,7 @@
     ls
     ```
     
-- 75_ `rm`
+- 74_ `rm`
     
     There's two that you don't need anymore. Remove the "header" image file from the `website` folder since you copied to the images folder.
     
@@ -600,7 +600,7 @@
     rm header.png
     ```
     
-- 76_
+- 75_ `rm`
     
     It should be gone. Remove the "footer" image from the `website` folder as well.
     
@@ -608,7 +608,7 @@
     rm footer.jpeg
     ```
     
-- 77_
+- 76_ `ls`
     
     List the contents of the `website` folder to check if they are gone.
     
@@ -616,7 +616,7 @@
     ls
     ```
     
-- 78_ `mv`
+- 77_ `mv`
     
     Looks like they're all deleted. There was a mistake with the extensions for the font files. You can rename them with `mv` like this: `mv <filename> <new_filename>`. `mv` stands for "move", it can **rename or move** something. Rename `roboto.font` to `roboto.woff`.
     
@@ -624,7 +624,7 @@
     mv roboto.font roboto.woff
     ```
     
-- 79_
+- 78_ `ls`
     
     Use "list" to check if it worked.
     
@@ -632,7 +632,7 @@
     ls
     ```
     
-- 80_
+- 79_ `mv`
     
     Do you see the "roboto" font? The rename worked. Next, rename the "lato" font file to `lato.ttf`.
     
@@ -640,7 +640,7 @@
     mv lato.font lato.ttf
     ```
     
-- 81_
+- 80_ `mv`
     
     Lastly, rename the "menlo" font to `menlo.otf`.
     
@@ -648,7 +648,7 @@
     mv menlo.font menlo.otf
     ```
     
-- 82_
+- 81_ `ls`
     
     Use the "list" command to make sure those last two got renamed.
     
@@ -656,7 +656,7 @@
     ls
     ```
     
-- 83_
+- 82_ `mkdir`
     
     Take a look at the files to make sure they got renamed. Those font files could be organized into a folder as well. Make a `fonts` directory in the `website` folder to put them in.
     
@@ -664,7 +664,7 @@
     mkdir fonts/
     ```
     
-- 84_
+- 83_ `ls`
     
     List the contents of the `website` folder to make sure your new folder is there.
     
@@ -672,7 +672,7 @@
     ls
     ```
     
-- 85_
+- 84_ `mv`
     
     See it? You renamed the font files with `mv`, you can also move files with it. Move the "roboto" font to the new `fonts` folder. Here's an example: `mv <file> <destination>`.
     
@@ -680,7 +680,7 @@
     mv roboto.woff fonts/
     ```
     
-- 86_ `find`
+- 85_ `find`
     
     You can use `find` to find things or view a file tree. Enter `find` to view the file tree of the `website` folder to see all the files and folders within it.
     
@@ -688,7 +688,7 @@
     find
     ```
     
-- 87_
+- 86_ `mv`
     
     You can see everything in this `website` folder and its descendant folders. Notice that they all start with `./` to represent this folder. You can see that your font moved to the `fonts` folder. Next, move the "lato" font to the `fonts` folder.
     
@@ -696,7 +696,7 @@
     mv lato.ttf fonts/
     ```
     
-- 88_
+- 87_ `mv`
     
     There's one more font to move. Move the "menlo" font to the `fonts` folder.
     
@@ -704,7 +704,7 @@
     mv menlo.otf fonts/
     ```
     
-- 89_
+- 88_
     
     Use `find` again to list the whole file tree and make sure those two got moved.
     
@@ -712,7 +712,7 @@
     find
     ```
     
-- 90_
+- 89_ `mkdir`
     
     Yes, you can see them all in the `fonts` folder. Let's organize some more. Make a `client` directory in the `website` folder for the client side files.
     
@@ -720,7 +720,7 @@
     mkdir client/
     ```
     
-- 91_
+- 90_ `mkdir
     
     You can make a folder in that `client` folder from here by adding it to the path like this: `mkdir client/<new_folder_name>`. Make a `src` directory in the `client` folder from here.
     
