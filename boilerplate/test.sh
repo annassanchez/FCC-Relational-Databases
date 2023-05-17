@@ -79,3 +79,63 @@ echo 039 create a css file styles.css with touch
 touch styes.css
 echo 040 list the contents on the folder
 ls
+echo 041 create a js file within the folder
+touch index.js
+echo 042 create a gitignore file 
+touch .gitignore
+echo 043 list elements within the folder
+ls
+echo 044 use ls --help to see the options of ls
+ls --help
+echo 045 use ls -a to list hidden files
+ls -a
+echo 046 it seems to be a . folder so use cd to move to it although its the current folder youre currently in
+cd .
+echo 047 create background.jpg with touch in the current folder
+touch background.jpg
+echo 048 create header.png image with touch in the current folder
+touch header.png
+echo 049 create a footer image footer.jpeg with touch
+touch footer.jpeg
+echo 050 list all elements in the current folder
+ls
+echo 051 create a font file roboto.font with touch
+touch roboto.font
+echo 052 create a font file lato.font with touch
+touch lato.font
+echo 053 create a font file menlo.font with touch
+touch menlo.font
+echo 054 list all new files in the given folder
+ls
+echo 055 create new svg file CodeAlly.svg with touch
+touch CodeAlly.svg
+echo 056 create new svg CodeRoad.svg with touch
+touch codeRoad.svg
+echo 057 create new svg file freeCodeCamp.svg with touch
+touch freeCodeCamp.svg
+echo 058 list the newly created files
+ls
+echo 059 generate a new folder images to store all the newly created images
+mkdir images/
+echo 060 list the contents in the folder to make sure the newly created folder is there
+ls
+echo 061 copy the images in the images folder
+cp background.jpg images/
+echo 062 move to the images directory
+cd images/
+echo 063 list all files in the images folder to see if the image is there
+ls
+echo 064 move to the prevous folder
+cd ..
+echo 065 list all elements in the current file
+ls
+echo 066 use rm to drop the recently copied image
+rm background.jpg
+echo 067 list the elements to se if the image is removed
+ls
+echo 068 copy header.png to the images folder
+cp header.png images/
+echo 069 copy footer.jpeg to the images folder
+cp footer.jpeg images/
+echo 070 all the images should be copied so lets move folders to check it
+cd images/
