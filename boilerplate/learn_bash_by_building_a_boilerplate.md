@@ -720,7 +720,7 @@
     mkdir client/
     ```
     
-- 90_ `mkdir
+- 90_ `mkdir`
     
     You can make a folder in that `client` folder from here by adding it to the path like this: `mkdir client/<new_folder_name>`. Make a `src` directory in the `client` folder from here.
     
@@ -728,7 +728,7 @@
     mkdir client/src
     ```
     
-- 92_
+- 91_ `mv`
     
     You can move files all the way across the system from here with the right path. Move `index.html` to the `client/src` folder from here.
     
@@ -736,7 +736,7 @@
     mv index.html client/src/
     ```
     
-- 93_
+- 92_ `find`
     
     Use `find` to view the file tree and make sure it moved.
     
@@ -744,7 +744,7 @@
     find
     ```
     
-- 94_
+- 93_ `mv`
     
     Can you see the `index.html` file in your new `src` folder? Looks like it moved 😄 There's some more files that can go in the `src` folder. Move `index.js` to it from here.
     
@@ -752,7 +752,7 @@
     mv index.js client/src/
     ```
     
-- 95_
+- 94_ `mv`
     
     Last is the CSS file. Move `styles.css` to the `src` folder.
     
@@ -760,7 +760,7 @@
     mv styles.css client/src/
     ```
     
-- 96_
+- 95_ `find`
     
     Seems like you can do anything right from here. Take another look at the tree with `find`.
     
@@ -768,7 +768,7 @@
     find
     ```
     
-- 97_
+- 96_ `find on folder`
     
     Things are looking more organized 😄 You can use `find <folder_name>` to display the tree of a different folder. View the file tree of the `client` folder from the `website` folder.
     
@@ -776,7 +776,7 @@
     find client/
     ```
     
-- 98_
+- 97_ `find`
     
     Now you just see what's in the `client` folder. What else can `find` do? View the "help" menu of the `find` command to look around.
     
@@ -784,7 +784,7 @@
     find --help
     ```
     
-- 99_
+- 98_ `find -name`
     
     The menu isn't very pretty, but there's a `-name` flag in there. You can use it to search for something with `find -name <filename>`. Use `find` with the `-name` flag to search for `index.html`.
     
@@ -792,7 +792,7 @@
     find -name index.html
     ```
     
-- 100_
+- 099_ `find -name`
     
     It shows you where that file is. Using the same command, find where the `styles.css` file is.
     
@@ -800,7 +800,7 @@
     find -name styles.css
     ```
     
-- 101_
+- 100_ `find -name`
     
     You can search for folders with it, as well. Using the same command and flag, find the `src` folder.
     

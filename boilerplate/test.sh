@@ -76,7 +76,7 @@ echo hello website
 echo 038 create a html file index.html with touch
 touch index.html
 echo 039 create a css file styles.css with touch
-touch styes.css
+touch styles.css
 echo 040 list the contents on the folder
 ls
 echo 041 create a js file within the folder
@@ -168,14 +168,36 @@ ls
 echo 084 use mv to move the font file roboto.woff to the fonts folder
 mv roboto.woff fonts/
 echo 085 you can use find to see the file tree
-find
+find .
 echo 086 use mv to move the lato.ttf file to the fonts folder
 mv lato.ttf fonts/
 echo 087 use mv to move the mento.otf file to the fonts folder
 mv menlo.otf fonts/
 echo 088 use find to list the whole file tree and make sure they got moved
-find
+find .
 echo 089 create a new folder called client in the wbsite folder 
 mkdir client/
 echo 090 create a new folder within the folder client created
 mkdir client/src/
+echo 091 move index.html to client/src
+mv index.html client/src/
+echo 092 use find to view the file tree
+find .
+echo 093 use mv to move index.js to client/src
+mv index.js client/src/
+echo 094 use mv to move styles.css to client/src
+mv styles.css client/src/
+echo 095 use find to display the file tree
+find . 
+echo 096 use find folder/ to display the tree of a different folder
+find client/
+echo 097 chek finds help
+find . --help
+echo 098 use find -name to search for something
+find . -name index.html
+echo 099 use find -name to seek the styles.css file
+find . -name styles.css
+echo 100 find src folder with find -name
+find . -name 'src/'
+echo 101 use find to see the folder tree
+find .
