@@ -808,7 +808,7 @@
     find -name src
     ```
     
-- 102_
+- 101_ `find`
     
     😄 View the file tree of the `website` folder to see what else you need to do.
     
@@ -816,7 +816,7 @@
     find
     ```
     
-- 103_
+- 102_ `cd`
     
     What's next? More organizing! You should put all the assets in one spot. Change into the `client` folder.
     
@@ -824,7 +824,7 @@
     cd client/
     ```
     
-- 104_
+- 103_ `mkdir`
     
     Make a new directory named `assets` in the `client` folder.
     
@@ -832,7 +832,7 @@
     mkdir assets
     ```
     
-- 105_
+- 104_ `cd`
     
     Change into the new `assets` folder.
     
@@ -840,7 +840,7 @@
     cd assets/
     ```
     
-- 106_
+- 105_ `mkdir`
     
     All the images and other assets can go here. Make an `images` directory in the `assets` folder for all the images.
     
@@ -848,7 +848,7 @@
     mkdir images/
     ```
     
-- 107_
+- 106_ `cd`
     
     Go to your new `images` folder.
     
@@ -856,7 +856,7 @@
     cd images/
     ```
     
-- 108_
+- 107_ `touch`
     
     You want the images here. Create `background.jpg` in this folder.
     
@@ -864,7 +864,7 @@
     touch background.jpg
     ```
     
-- 109_
+- 108_ `cd`
     
     Wait. You don't need to recreate them. You can just move the other images here. Go back to the `website` folder from here. It's three folder back.
     
@@ -872,7 +872,7 @@
     cd ../../..
     ```
     
-- 110_
+- 109_ `cd`
     
     Now go to where the original images are. Change into the `images` folder.
     
@@ -880,7 +880,7 @@
     cd images/
     ```
     
-- 111_
+- 110_ `ls`
     
     List the contents of the `images` folder to see the files here.
     
@@ -888,7 +888,7 @@
     ls
     ```
     
-- 112_
+- 111_ `mv`
     
     Umm, first I think you should move them back to the website folder. Move `header.png` back to the `website` folder. The destination for the file is `..`
     
@@ -896,7 +896,7 @@
     mv header.png ../
     ```
     
-- 113_
+- 112_ `ls`
     
     List the contents of the `images` folder to see if it's gone.
     
@@ -904,7 +904,7 @@
     ls
     ```
     
-- 114_
+- 113_ `cd`
     
     It's gone. Go back to the `website` folder.
     
@@ -912,7 +912,7 @@
     cd ..
     ```
     
-- 115_
+- 114_ `ls`
     
     List what's here.
     
@@ -920,7 +920,7 @@
     ls
     ```
     
-- 116_
+- 115_ `find`
     
     There's the file you just moved. Next, you will move it to the `client/assets/images` folder. First, use `find` with the correct flag to search for `images`.
     
@@ -928,7 +928,7 @@
     find -name images
     ```
     
-- 117_
+- 116_ `mv`
     
     There's your two image folders. Move `header.png` to the one with the longer path. Just use it as the destination to do so.
     
@@ -936,7 +936,7 @@
     mv header.png client/assets/images/
     ```
     
-- 118_
+- 117_ `find`
     
     Use `find` to search for your `header.png` file and make sure it moved.
     
@@ -944,7 +944,7 @@
     find -name header.png
     ```
     
-- 119_
+- 118_ `find`
     
     There it is. Right where you put it. Next, search for your `footer.jpeg` file so you can move that over there.
     
@@ -952,7 +952,7 @@
     find -name footer.jpeg
     ```
     
-- 120_
+- 119_ `mv`
     
     It's in the original `images` folder. You can **use that path** with the move command to move it. Move `footer.jpeg` to the `client/assets/images` folder while in the `website` folder.
     
@@ -960,7 +960,7 @@
     mv images/footer.jpeg client/assets/images/
     ```
     
-- 121_
+- 120_ `find`
     
     View the file tree of this folder to make sure all your images are over in their new folder. Don't use any flags.
     
@@ -968,7 +968,7 @@
     find
     ```
     
-- 122_ `rmdir`
+- 121_ `rmdir`
     
     You don't need the old `images` folder anymore. You can use `rmdir <directory_name>` to remove a folder. `rmdir` stands for "remove directory". Try to remove the `images` folder with `rmdir`. Make sure it's the one in the `website` folder.
     
@@ -976,7 +976,7 @@
     rmdir images/
     ```
     
-- 123_
+- 122_ `rm`
     
     Directory not empty? Oh yeah, there's still the background image in there. Remove the background image file in the `images` folder from here. Make sure it's the one in the `website/images` folder.
     
@@ -984,7 +984,7 @@
     rm images/background.jpg
     ```
     
-- 124_
+- 123_ `rmdir`
     
     Try to remove the `images` folder again with `rmdir`. Make sure it's the one in the `website` folder.
     
@@ -992,7 +992,7 @@
     rmdir images/
     ```
     
-- 125_
+- 124_
     
     I think it worked this time. List the contents to find out.
     
@@ -1000,7 +1000,7 @@
     ls
     ```
     
-- 126_
+- 125_ `mkdir`
     
     It worked, the `images` folder is gone. Make a new `icons` folder in your `assets` folder while in the `website` folder.
     
@@ -1008,7 +1008,7 @@
     mkdir client/assets/icons/
     ```
     
-- 127_
+- 126_ `mv`
     
     Move the `CodeAlly.svg` file to your new `icons` folder.
     
@@ -1016,7 +1016,7 @@
     mv CodeAlly.svg client/assets/icons/
     ```
     
-- 128_
+- 127_ `find`
     
     View the file tree of the `website` folder and make sure it moved.
     
@@ -1024,7 +1024,7 @@
     find
     ```
     
-- 129_
+- 128_ `mv`
     
     Verify that the file moved to the `icons` folder. Next, move the "CodeRoad" file to your `icons` folder.
     
@@ -1032,7 +1032,7 @@
     mv CodeRoad.svg client/assets/icons/
     ```
     
-- 130_
+- 129_ `mv`
     
     Lastly, move the "freeCodeCamp" file to your `icons` folder.
     
@@ -1040,7 +1040,7 @@
     mv freeCodeCamp.svg client/assets/icons/
     ```
     
-- 131_
+- 130_ `find`
     
     View the file tree and make sure the files moved.
     
@@ -1048,7 +1048,7 @@
     find
     ```
     
-- 132_
+- 131_ `mkdir`
     
     This looks much better. The three icons are now in the `icons` folder. Make a `fonts` folder in your `assets` folder from here for all the font files.
     
@@ -1056,7 +1056,7 @@
     mkdir client/assets/fonts
     ```
     
-- 133_
+- 132_ `touch`
     
     Turns out you want some different fonts for the website. From here, create `roboto-bold.woff` in your new `fonts` folder. You can put the path in front of the filename of where you want it to go.
     
@@ -1064,7 +1064,7 @@
     touch client/assets/fonts/roboto-bold.woff
     ```
     
-- 134_
+- 133_ `touch`
     
     Next, create `roboto-light.woff` in your new `fonts` folder from here.
     
@@ -1072,7 +1072,7 @@
     touch client/assets/fonts/roboto-light.woff
     ```
     
-- 135_
+- 134_ `find`
     
     View the file tree of the `client/assets/fonts` folder from here to see if your new files are there.
     
@@ -1080,7 +1080,7 @@
     find client/assets/fonts/
     ```
     
-- 136_
+- 135_ `touch`
     
     Two more fonts to go. Create `lato-bold.ttf` in the new `fonts` folder from here.
     
@@ -1088,7 +1088,7 @@
     touch client/assets/fonts/lato-bold.ttf
     ```
     
-- 137_
+- 136_ `touch`
     
     Lastly, create `lato-light.ttf` in your new `fonts` folder from here.
     
@@ -1096,7 +1096,7 @@
     touch client/assets/fonts/lato-light.ttf
     ```
     
-- 138_
+- 137_ `find`
     
     View your file tree and make sure the files are there.
     
@@ -1104,7 +1104,7 @@
     find
     ```
     
-- 139_
+- 138_ `rm`
     
     Things are looking more organized 😄 The new fonts are there. Now you can remove the old `fonts` folder and everything in it. You can't do that with `rmdir` since it's not empty. View the "help" menu of the `rm` command to see if you can find anything.
     
@@ -1112,7 +1112,7 @@
     rm --help
     ```
     
-- 140_
+- 139_ `rm -r`
     
     There's a `-r` flag that says, `remove directories and their contents recursively`. That will remove the folder and everything in it. Use the "remove" command with that flag to remove the `fonts` folder. Make sure it's the one in the `website` folder. Be careful not to remove the wrong folder.
     
@@ -1120,7 +1120,7 @@
     rm -r fonts/
     ```
     
-- 141_
+- 140_ `ls`
     
     List what's here to see if it's gone.
     
@@ -1128,7 +1128,7 @@
     ls
     ```
     
-- 142_
+- 141_ `touch`
     
     Looks like it’s gone. Surely, it went to the trash can right? No, it’s just gone. You should **be very careful when recursively removing files** like that. It will delete everything, and can destroy your operating system. There's a few more files for the boilerplate. Create `package.json` in the `website` folder.
     
@@ -1136,7 +1136,7 @@
     touch package.json
     ```
     
-- 143_
+- 142_ `touch`
     
     Next, create `server.js` in the `website` folder.
     
@@ -1144,7 +1144,7 @@
     touch server.js
     ```
     
-- 144_
+- 143_ `touch`
     
     Lastly, create `README.md` in the `website` folder.
     
@@ -1152,7 +1152,7 @@
     touch README.md
     ```
     
-- 145_
+- 144_ `ls`
     
     List the content of this folder to make sure your new files are there.
     
@@ -1160,7 +1160,7 @@
     ls
     ```
     
-- 146_
+- 145_ `echo`
     
     The boilerplate is complete. Use `echo` to print `Yay!` to the terminal.
     
@@ -1168,7 +1168,7 @@
     echo Yay!
     ```
     
-- 147_
+- 146_ `echo`
     
     Print `I finished the boilerplate!` to the terminal.
     
@@ -1176,7 +1176,7 @@
     echo I finished the boilerplate!
     ```
     
-- 148_
+- 147_ `echo`
     
     Print `one more thing...` to the terminal.
     
@@ -1184,7 +1184,7 @@
     echo one more thing...
     ```
     
-- 149_ `echo text >> filename`
+- 148_ `echo text >> filename`
     
     You can print to a file instead of the terminal with `echo text >> filename`. Use it to print `I made this boilerplate` to your `README.md` file.
     
@@ -1192,7 +1192,7 @@
     echo I made this boilerplate >> README.md
     ```
     
-- 150_
+- 149_ `more`
     
     Use `more` to view your `README.md` file.
     
@@ -1200,7 +1200,7 @@
     more README.md
     ```
     
-- 151_
+- 150_ `echo text >> filename`
     
     Now that line is in the file. Add `from the command line` to your `README.md` file with the `echo` command and the same method.
     
@@ -1208,7 +1208,7 @@
     echo from the command line >> README.md
     ```
     
-- 152_
+- 151_ `more`
     
     Use `more` to view the "readme" file again.
     
@@ -1216,7 +1216,7 @@
     more README.md
     ```
     
-- 153_
+- 152_ `echo text >> filename`
     
     Now the file has two lines. Add `for the freeCodeCamp bash lessons` to your "readme" file with the `echo` command like you did before.
     
@@ -1224,7 +1224,7 @@
     echo for the freeCodeCamp bash lessons >> README.md
     ```
     
-- 154_
+- 153_ `more`
     
     View your "readme" file again like you did before.
     
@@ -1232,7 +1232,7 @@
     more README.md
     ```
     
-- 155_
+- 154_ `cd`
     
     😄 Change to the `project` folder.
     
@@ -1240,7 +1240,7 @@
     cd ..
     ```
     
-- 156_
+- 155_ `ls`
     
     You are back where you started. List what's here.
     
@@ -1248,7 +1248,7 @@
     ls
     ```
     
-- 157_
+- 156_ `mv`
     
     Still the same two folders. Rename the `website` folder to `website-boilerplate`.
     
@@ -1256,7 +1256,7 @@
     mv website website-boilerplate
     ```
     
-- 158_
+- 157_ `ls`
     
     List the contents of this folder to see the new name.
     
@@ -1264,10 +1264,7 @@
     ls
     ```
     
-- 159_
-    
-    
-- 160_
+- 158_ `cp --help`
     
     Thanks for making this. You need to make a copy of it. Take a look at the "help" menu of the "copy" command.
     
@@ -1275,7 +1272,7 @@
     cp --help
     ```
     
-- 161_
+- 159_ `cp --recursive`
     
     Scroll up to find that "recursive" flag. You need to use it again to copy the whole folder. Copy the whole boilerplate into a folder named `toms-website`.
     
@@ -1283,7 +1280,7 @@
     cp --recursive website-boilerplate/ toms-website/
     ```
     
-- 162_
+- 160_
     
     List the contents of the `project` folder to see the new copy.
     
@@ -1291,7 +1288,7 @@
     ls
     ```
     
-- 163_
+- 161_ `find`
     
     Thanks. Use `find` to view the tree of `toms-website`.
     
@@ -1299,7 +1296,7 @@
     find toms-website/
     ```
     
-- 164_
+- 162_ `find`
     
     Use `find` to view the tree of the boilerplate folder to make sure it matches.
     
@@ -1307,7 +1304,7 @@
     find website-boilerplate/
     ```
     
-- 165_
+- 163_ `clear`
     
     Awesome! You are finished for now. Clear the terminal one last time.
     
@@ -1315,7 +1312,7 @@
     clear
     ```
     
-- 166_
+- 164_ `echo`
     
     Print "goodbye terminal" to the terminal.
     
@@ -1323,7 +1320,7 @@
     echo goodbye terminal
     ```
     
-- 167_ `exit`
+- 165_ `exit`
     
     Use the "exit" command to exit the terminal.
     
