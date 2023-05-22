@@ -111,3 +111,45 @@ ALTER TABLE characters ADD COLUMN favorite_color VARCHAR(30);
 \d characters
 -- 059 use INSERT INTO to add new values to characters table
 INSERT INTO characters(name, homeland, favorite_color) VALUES('Mario', 'Mushroom Kingdom', 'Red');
+-- 060 use select to display changes
+SELECT * FROM characters;
+-- 061 use INSERT INTO to add rows to the characters table
+INSERT INTO characters(name, homeland, favorite_color) VALUES('Luigi', 'Mushroom Kingdom', 'Green');
+-- 062 use SELECT to display the new rows added 
+SELECT * FROM characters;
+-- 063 use INSERT INTO to add a row to the characters table
+INSERT INTO characters(name, homeland, favorite_color) VALUES('Peach', 'Mushroom Kingdom', 'Pink');
+-- 064 use INSERT INTO to add multiple rows to the characters table 
+INSERT INTO characters(name, homeland, favorite_color)
+VALUES('Toadstool', 'Mushroom Kingdom', 'Red'),
+('Bowser', 'Mushroom Kingdom', 'Green');
+-- 065 use INSERT INTO to add multiple rows to the characters table
+INSERT INTO characters(name, homeland, favorite_color)
+VALUES('Daisy', 'Sarasaland', 'Yellow'),
+('Yoshi', 'Dinosaur Land', 'Green');
+-- 066 use SELECT to display the characters table
+SELECT * FROM characters;
+-- 067 use UPDATE to change a value given a condition
+UPDATE characters SET favorite_color='Orange' WHERE name='Daisy';
+-- 068 use SELECT to display the update
+SELECT * FROM characters;
+-- 069 use UPDATE to change the value to update name='Toad' where favorite_color='Red'
+UPDATE characters SET name='Toad' WHERE favorite_color='Red';
+-- 070 use SELECT to display the values on the table changed
+SELECT * FROM characters;
+-- 071 use UPDATE to set name='Mario' to the condition character_id=2
+UPDATE characters SET name='Mario' WHERE character_id=2;
+-- 072 use SELECT to display the changes on the characters table
+SELECT * FROM characters;
+-- 073 use UPDATE to set favorite_color='Blue' where character_id=5
+UPDATE characters SET favorite_color='Blue' WHERE character_id=5;
+-- 074 use UPDATE to set favorite_color='Yellow' where character_id=6
+UPDATE characters SET favorite_color='Yellow' WHERE character_id=6;
+-- 075 use UPDATE to set homeland='Koopa Kingdom' where character_id=6
+UPDATE characters SET homeland='Koopa Kingdom' WHERE character_id=6;
+-- 076 SELECT ORDER BY to display the table ordered by character_id
+SELECT * FROM characters ORDER BY character_id;
+-- 077 ALTER TABLE add promary key to key
+ALTER TABLE characters ADD PRIMARY KEY(name);
+-- 078 check the character table details with \d
+\d characters 
