@@ -147,9 +147,23 @@ UPDATE characters SET favorite_color='Blue' WHERE character_id=5;
 UPDATE characters SET favorite_color='Yellow' WHERE character_id=6;
 -- 075 use UPDATE to set homeland='Koopa Kingdom' where character_id=6
 UPDATE characters SET homeland='Koopa Kingdom' WHERE character_id=6;
--- 076 SELECT ORDER BY to display the table ordered by character_id
+-- 076 select all columns from the characters table
+SELECT * FROM characters;
+-- 077 SELECT ORDER BY to display the table ordered by character_id
 SELECT * FROM characters ORDER BY character_id;
--- 077 ALTER TABLE add promary key to key
+-- 078 ALTER TABLE add promary key to key
 ALTER TABLE characters ADD PRIMARY KEY(name);
--- 078 check the character table details with \d
+-- 079 check the character table details with \d
 \d characters 
+-- 080 display the character table to see the primary key
+ALTER TABLE characters DROP CONSTRAINT characters_pkey;
+-- 081 view the details on the characters table to see if its gone
+\d characters
+-- 082 ALTER TABLE ADD PRIMARY KEY
+ALTER TABLE characters ADD PRIMARY KEY(character_id);
+-- 083 display the details from the characters table
+\d characters;
+-- 084 use CREATE TABLE to create the more_info table
+CREATE TABLE more_info();
+-- 085 display the details on the mario database 
+\d 
