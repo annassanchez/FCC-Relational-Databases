@@ -167,3 +167,13 @@ ALTER TABLE characters ADD PRIMARY KEY(character_id);
 CREATE TABLE more_info();
 -- 085 display the details on the mario database 
 \d 
+-- 086 display the details on the characters table
+\d characters
+-- 087 add new column to more_info with ALTER TABLE ADD COLUMN
+ALTER TABLE more_info ADD COLUMN more_info_id SERIAL;
+-- 088 add new primary key to a column with ALTER TABLE ADD PRIMARY KEY
+ALTER TABLE more_info ADD PRIMARY KEY(more_info_id);
+-- 089 display details from the table
+\d
+-- 090 add new column birthday to more_info with ALTER TABLE ADD COLUMN 
+ALTER TABLE more_info ADD COLUMN birthday DATE;
