@@ -177,3 +177,85 @@ ALTER TABLE more_info ADD PRIMARY KEY(more_info_id);
 \d
 -- 090 add new column birthday to more_info with ALTER TABLE ADD COLUMN 
 ALTER TABLE more_info ADD COLUMN birthday DATE;
+-- 091 add height column to more_info that's type INT
+ALTER TABLE more_info ADD COLUMN height INT;
+-- 092 add column weight to more_info thats type NUMERIC
+ALTER TABLE more_info ADD COLUMN weight NUMERIC(4,1);
+-- 093 display details from more_info
+\d more_info;
+-- 094 add column character_id and turn it into a foreign key that references the character_id column from characters
+ALTER TABLE more_info ADD COLUMN character_id INT REFERENCES characters(character_id);
+-- 095 display details from more_info
+\d more_info;
+-- 096 add another constraint to the character_id column
+ALTER TABLE more_info ADD UNIQUE(character_id);
+-- 097 use alter column to add the condition NOT NULL to character_id
+ALTER TABLE more_info ALTER COLUMN character_id SET NOT NULL;
+-- 098 display the details from the more_info layer
+\d more_info;
+-- 099 select the column character_id from the characters table to see the ids youll need for your foreign key column
+SELECT character_id FROM characters;
+-- 100 select columns character_id, name from the characters table
+SELECT character_id, name FROM characters;
+-- 101 insert values into more_info table 
+INSERT INTO more_info(character_id, birthday, height, weight) VALUES(1, '1981-07-09', 155, 64.5);
+-- 102 select values from more_info
+SELECT * FROM more_info;
+-- 103 select values from chracters to see what is the new character_id to add
+SELECT character_id, name from characters;
+-- 104 insert another row into more_info
+INSERT INTO more_info(character_id, birthday, height, weight) VALUES(2, '1983-07-14', 175, 48.8);
+-- 105 select all values from more_info to see the newly added row
+SELECT * FROM more_info;
+-- 106 check character_id, name from the characters table to see what to add to the more_info layer
+SELECT character_id, name FROM characters;
+-- 107 insert another row into more_info
+INSERT INTO more_info(character_id, birthday, height, weight) VALUES(3, '1985-10-18', 173, 52.2);
+-- 108 select character_id, name from characters following a condition
+SELECT character_id, name FROM characters WHERE name='Toad';
+-- 109 insert another row to the more_info table
+INSERT INTO more_info(character_id, birthday, height, weight) VALUES(4, '1950-01-10', 66, 35.6);
+-- 110 select all more_info layer to see the values added 
+SELECT * FROM more_info;
+-- 111 select character_id, name from characters to see the values for the given condition
+SELECT character_id, name FROM characters WHERE name='Bowser';
+-- 112 insert another row into the more_info table
+INSERT INTO more_info(character_id, birthday, height, weight) VALUES(5, '1990-10-29', 258, 300);
+-- 113 select values from characters following the given condition
+SELECT character_id, name FROM characters WHERE name='Daisy';
+-- 114 insert characters into more_info
+INSERT INTO more_info(character_id, birthday, height, weight) VALUES(6, '1989-07-31', NULL, NULL);
+-- 115 select all values from the more_info table to see the newly added values
+SELECT * FROM more_info;
+-- 116 select values from characters table that follow the condition
+SELECT character_id, name FROM characters WHERE name='Yoshi';
+-- 117 insert more data into the more_info table
+INSERT INTO more_info(character_id, birthday, height, weight) VALUES(7, '1990-04-13', 162, 59.1);
+-- 118 select all columns from more_info to see the values
+SELECT * FROM more_info;
+-- 119 alter table rename columns to match the unit values in the column: height -> height_in_cm
+ALTER TABLE more_info RENAME COLUMN height TO height_in_cm;
+-- 120 alter table rename columns from weith to wight_in_kg
+ALTER TABLE more_info RENAME COLUMN weight TO weight_in_kg;
+-- 121 select the values from more_info to see the results
+SELECT * FROM more_info;
+-- 122 create new table sounds
+CREATE TABLE sounds(sound_id SERIAL PRIMARY KEY);
+-- 123 display the tables in mario_database to make sure it worked
+\d 
+-- 124 add column to sounds table filename and force it to be unique and not null
+ALTER TABLE sounds ADD COLUMN filename VARCHAR(40) NOT NULL UNIQUE;
+-- 125 add column character_id with a foreign key constraint
+ALTER TABLE sounds ADD COLUMN character_id INT NOT NULL REFERENCES characters(character_id);
+-- 126 display the details from the sounds table
+\d sounds;
+-- 127 select all columns from characters table and order by the character_id column
+SELECT * FROM characters ORDER BY character_id;
+-- 128 insert value into the sounds table for character_id=1
+INSERT INTO sounds(filename, character_id) VALUES('its-a-me.wav', 1);
+-- 129 insert values into the sounds table for character_id=1
+INSERT INTO sounds(filename, character_id) VALUES('yippee.wav', 1);
+-- 130 insert values into the sounds table for character_id=2
+INSERT INTO sounds(filename, character_id) VALUES('ha-ha.wav', 2);
+-- 131 insert values into the sounds table for character_id=2
+INSERT INTO sounds(character_id, filename) VALUES(2, 'oh-yeah.wav');
