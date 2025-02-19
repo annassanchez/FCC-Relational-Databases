@@ -1,3 +1,7 @@
+-- 002 log in
+--psql --username=freecodecamp --dbname=postgres
+-- 03 list databases
+\l
 -- psql -d postgres
 -- \i test.sql
 -- 004 CREATE first database with CREATE DATABASE
@@ -74,7 +78,7 @@ SELECT * FROM second_table;
 \d second_table
 -- 040 use ALTER TABLE to drop columns
 ALTER TABLE second_table DROP COLUMN username;
-ALTER TABLE second_table DROP COLUMN name;
+--ALTER TABLE second_table DROP COLUMN name;
 -- 041 use ALTER TABLE to drop the id column
 ALTER TABLE second_table DROP COLUMN id;
 -- 042 display this database to see the changes
