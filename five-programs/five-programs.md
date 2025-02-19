@@ -59,3 +59,25 @@
 `./questionnaire.sh`
 <br> 029 It would be nice if there was some empty lines around the title. You've probably used the --help flag before, see if you can use it with echo to try and find a way to add empty lines.<br>
 `echo --help`
+<br> 030 That didn't work as I hoped. Another way to find information about a command is with man. It stands for manual and you can use it like this: man <command>. See if there's a manual for echo.<br>
+`man echo`
+<br> 031 At the top of the menu, the -e option looks promising. And the \n below it says new line. You should take a look at those. In your script, change the title to echo -e \n~~ Questionnaire ~~\n to see if that prints the empty lines.<br>
+`echo -e \n~~ Questionnaire ~~\n`
+<br> 032 Run it to see if it worked. You can press ctrl+c to close the program after it starts if you don't want to enter values.<br>
+`./questionnaire.sh`
+<br> 033 It didn't print the empty lines. echo will only print empty lines if the value is enclosed in quotes. Place double quotes around the title that gets printed to see if it works.<br>
+`echo -e "\n~~ Questionnaire ~~\n"`
+<br> 034 Run your script again to see if that fixed it.<br>
+`./questionnaire.sh`
+<br> 035 Now it's working 😄 Create a QUESTION3 variable next to the other two, set it's value to "What's your favorite coding website?"<br>
+`QUESTION3="What's your favorite coding website?"`
+<br> 036 Use echo to print the third question after you read the LOCATION.<br>
+`echo $QUESTION3`
+<br> 037 After the question you just printed, add code to read input into a variable named WEBSITE.<br>
+`read WEBSITE`
+<br> 038 Change the echo command of the response to print this sentence instead: Hello <name> from <location>. I learned that your favorite coding website is <website>!.<br>
+`echo "Hello $NAME from $LOCATION. I learned that your favorite coding website is $WEBSITE!"`
+<br> 039 Run the script and enter values when the program is waiting. Let's see the final output.<br>
+`./questionnaire.sh`
+<br> 040 One last thing. Change that final response to print an empty line at the beginning of the sentence.<br>
+`echo "\nHello $NAME from $LOCATION. I learned that your favorite coding website is $WEBSITE!"`
