@@ -78,7 +78,7 @@ SELECT * FROM second_table;
 \d second_table
 -- 040 use ALTER TABLE to drop columns
 ALTER TABLE second_table DROP COLUMN username;
---ALTER TABLE second_table DROP COLUMN name;
+--6ALTER TABLE second_table DROP COLUMN name;
 -- 041 use ALTER TABLE to drop the id column
 ALTER TABLE second_table DROP COLUMN id;
 -- 042 display this database to see the changes
@@ -148,11 +148,11 @@ UPDATE characters SET name='Mario' WHERE character_id=2;
 -- 072 use SELECT to display the changes on the characters table
 SELECT * FROM characters;
 -- 073 use UPDATE to set favorite_color='Blue' where character_id=5
-UPDATE characters SET favorite_color='Blue' WHERE character_id=5;
+UPDATE characters SET favorite_color='Blue' WHERE name='Toad';
 -- 074 use UPDATE to set favorite_color='Yellow' where character_id=6
-UPDATE characters SET favorite_color='Yellow' WHERE character_id=6;
+UPDATE characters SET favorite_color='Yellow' WHERE name='Bowser';
 -- 075 use UPDATE to set homeland='Koopa Kingdom' where character_id=6
-UPDATE characters SET homeland='Koopa Kingdom' WHERE character_id=6;
+UPDATE characters SET homeland='Koopa Kingdom' WHERE name='Bowser';
 -- 076 select all columns from the characters table
 SELECT * FROM characters;
 -- 077 SELECT ORDER BY to display the table ordered by character_id
