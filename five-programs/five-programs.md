@@ -149,3 +149,60 @@ then
 else
     echo false
 fi`
+<br> 060 Run the script again and use anything except arg1 as the only argument.<br>
+`./countdown.sh 4`
+<br> 061 It printed true since your argument was less than 5. Run it again with 5 as the argument.<br>
+`./countdown.sh 5`
+<br> 062 As expected, that printed false. Take a look at that help menu again. I want to see if we can find out more about how these expressions work.<br>
+`help`
+<br> 063 Near the top left, it says [[ expression ]]. Those look like the double brackets you are using. See if you can get more info about that with the help command like you did with help if.<br>
+`help [[ expression ]]`
+<br> 064 It might not be a bad idea to read that. Looks like you can use some, probably familiar, things like !, &&, and || to compare multiple expressions. There's also == and != operators for an individual expression. It says something about the test built-in command. See if you can bring up the help menu for that.<br>
+`help test`
+<br> 065 That's what I was looking for. At the top are some file operators. There's some string and other operators as well. You should take a look at them. Near the bottom, are the arithmetic operators you used with your if condition. Change the condition in your script to check if the first argument is less than or equal to 5.<br>
+`if [[ $1 -le 5 ]]
+then
+  echo true
+else
+    echo false
+fi`
+<br> 066 Run the script and use 5 as a first argument again.<br>
+`./countdown.sh 5`
+<br> 067 Now it prints true. Remember I said any command can run in the terminal or a script. Try running an expression right in the terminal by entering [[ 4 -le 5 ]] in it.<br>
+`[[ 4 -le 5 ]]`
+<br> 068 Nothing happened? Each command has an exit status that can be accessed with $?. View the exit status of the last command with echo $?.<br>
+`echo $?`
+<br> 069 The exit status of 0 means it was true, 4 is indeed less or equal to 5. Try it again with [[ 4 -ge 5 ]].<br>
+`[[ 4 -ge 5 ]]`
+<br> 070 Use echo to view the exit status of the command you just entered.<br>
+`echo $?`
+<br> 071 It printed 1 this time for false. You can separate commands on a single line with ;. Enter your last two commands on one line like this: [[ 4 -ge 5 ]]; echo $?. It will run the expression, then print the exit status of it since it was the last command.<br>
+`[[ 4 -ge 5 ]]; echo $? `
+<br> 072 It's still false. Using the same syntax of [[ ... ]]; echo $?, check if 10 is not equal to 5 and print the exit status of the expression on one line.<br>
+`[[ 10 -ne 5 ]]; echo $?`
+<br> 073 You can think of an exit status of 0 as true. But it means that the command had zero errors. All commands have an exit status. Using the same syntax, enter bad_command; and check its exit status on a single line.<br>
+`bad_command; echo $?`
+<br> 074 command not found, with an exit status of 127. Anything but 0 means there was an error with the command. bad_command didn't exist. Try it again with ls.<br>
+`ls; echo $?`
+<br> 075 command not found, with an exit status of 127. Anything but 0 means there was an error with the command. bad_command didn't exist. Try it again with ls.<br>
+`ls; echo $?`
+<br> 076 The command executed as expected and there were zero errors. So it gave you an exit status of 0. Try it again with ls -y.<br>
+`ls -y; echo $?`
+<br> 077 The -y flag doesn't work with ls so it gave you an exit status other than 0, meaning that the command was unsuccessful. View the help menu of the test command again, I want to see what else is in that list.<br>
+`help test`
+<br> 078 You tried a few of the arithmetic operators, those work for integers. Try one of the file operators. The first one on the list checks if a file exists. Type [[ -a countdown.sh ]]; echo $? in the terminal to see if your file exists.<br>
+`[[ -a countdown.sh ]]; echo $?`
+<br> 079 The file must exist. It's checking the folder the command is entered from. Try it again with bad_file.txt.<br>
+`[[ -a bad_file.txt ]]; echo $?`
+<br> 080 bad_file.txt doesn't exist. I think you're getting the hang of this. Using the same syntax, check if you have permissions to execute your countdown.sh file. You may want to look at that menu again.<br>
+`[[ -x countdown.sh ]]; echo $?`
+<br> 081 You played around with a number of the expressions. View the help [[ expression ]] menu again that you looked at before to see a few more options. You can view the menu with just help [[.<br>
+`help [[ expression ]]`
+<br> 082 You played around with a number of the expressions. View the help [[ expression ]] menu again that you looked at before to see a few more options. You can view the menu with just help [[.<br>
+`help [[ expression ]]`
+<br> 083 As I mentioned before, you can test multiple expressions with && and ||. Enter [[ -x countdown.sh && 5 -le 4 ]]; echo $? in the terminal to test the file is executable by you and five is less than or equal to four.<br>
+`[[ -x countdown.sh && 5 -le 4 ]]; echo $?`
+<br> 084 Both conditions weren't true, so the exit status was 1 for false. Try testing the same two conditions with the or operator.<br>
+`[[ -x countdown.sh || 5 -le 4 ]]; echo $?`
+<br> 085 One of the conditions was true so it printed 0. I think that's enough of a detour. Back in your script, change the if condition to check if the first argument is greater than zero so you can be sure it's something you can count down from.<br>
+`[[ -x countdown.sh || 5 -le 4 ]]; echo $?`
