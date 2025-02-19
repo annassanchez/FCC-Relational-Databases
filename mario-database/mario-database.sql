@@ -290,7 +290,7 @@ ALTER TABLE character_actions ADD COLUMN character_id INT NOT NULL;
 -- 143 alter table add foreign key into character_id column
 ALTER TABLE character_actions ADD FOREIGN KEY(character_id) REFERENCES characters(character_id);
 -- 144 view character_actions table detail
-\d
+\d character_actions
 -- 145 alter table character_actios add column action_id
 ALTER TABLE character_actions ADD COLUMN action_id INT NOT NULL;
 -- 146 add foreign key to the action_id column
