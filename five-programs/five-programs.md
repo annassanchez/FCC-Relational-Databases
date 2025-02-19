@@ -39,3 +39,23 @@
 <br> 020 t the bottom of your script, use echo to print Hello <name>. to the terminal.
 <br>
 `echo "Hello $NAME."`
+<br> 021 Run the file again. Type your name and press enter after it asks for it.<br>
+`./questionnaire.sh`
+<br> 022 RRight below your first variable, create another one named QUESTION2. Set the value to, Where are you from?. Make sure to put it in double quotes.<br>
+`QUESTION2="Where are you from?"`
+<br> 023 After your read command, use your new variable to print the next question.<br>
+`echo $QUESTION2`
+<br> 023 After your read command, use your new variable to print the next question.<br>
+`echo $QUESTION2`
+<br> 024 Below where the second question is printed, use read to get input from the user into a variable named LOCATION.<br>
+`read LOCATION`
+<br> 025 Change the existing response to Hello <name> from <location>.<br>
+`echo "Hello $NAME from $LOCATION."`
+<br> 026 Run the script and enter values when it is waiting for input.<br>
+`./questionnaire.sh`
+<br> 027 It's looking good. I want a title to appear when the program first starts. Use echo to print ~~ Questionnaire ~~ before anything else is printed.<br>
+`echo "~~ Questionnaire ~~"`
+<br> 028 Run the script and enter values until it is done again so you can see what the title looks like.<br>
+`./questionnaire.sh`
+<br> 029 It would be nice if there was some empty lines around the title. You've probably used the --help flag before, see if you can use it with echo to try and find a way to add empty lines.<br>
+`echo --help`
