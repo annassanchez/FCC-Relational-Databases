@@ -81,3 +81,6 @@
 `./questionnaire.sh`
 <br> 040 One last thing. Change that final response to print an empty line at the beginning of the sentence.<br>
 `echo "\nHello $NAME from $LOCATION. I learned that your favorite coding website is $WEBSITE!"`
+<br> 041 Run it one last time and enter values when it asks to see if you like how it looks.<br>
+`./questionnaire.sh`
+<br> 042 It looks good. I think you are done with that script for now. The next program will be countdown timer. Use the touch command to create a new file named countdown.sh in your project folder.<br>
