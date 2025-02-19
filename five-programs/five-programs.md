@@ -99,3 +99,53 @@
 `./countdown.sh arg1 arg2 arg3`
 <br> 049 $* printed all the arguments passed to your script. To access any one of them, use $<number>. arg2 could have been accessed with $2. Change your script to echo the first argument instead of all the arguments.<br>
 `echo $1`
+<br> 050 Run your file with ./countdown.sh arg1 arg2 arg3 again.<br>
+`./countdown.sh arg1 arg2 arg3`
+<br> 051 Now it just prints the first argument. Your program will accept an argument to count down from. You will test it with an if statement to make sure it's a positive integer. I wonder what that syntax would look like. Type help in the terminal to see if you can find anything.<br>
+`help`
+<br> 052 This is a list of built-in commands. You should look over it, some of them may look familiar. I see echo in there. Another one is if. See if you can find out more about it by checking its man page.<br>
+`man if`
+<br> 053 I guess there isn't a man page for it. At the top of the help screen, I noticed you can use help <command> to find out more. Yet another way to find out about a command 😥 See if you can find out more about if with that method.<br>
+`hekp if`
+<br> 054 The syntax is at the top, not all of it is required. Here's another example:
+
+`if [[ CONDITION ]]
+then
+  STATEMENTS
+fi`
+
+Remove the echo $1 in your script and add an if condition that checks if [[ $1 == arg1 ]]. In its then area, use echo to print true to the screen. There must be spaces on the inside of the brackets ([[ ... ]]) and around the operator (==).<br>
+`if [[ $1 == arg1 ]]
+then
+  echo true
+fi`
+<br> 055 Notice that the end of the syntax is fi (if backwards). It should print true if you pass arg1 to your script now. Run the script with arg1 as the only argument.<br>
+`./countdown.sh arg1`
+<br> 056 The if condition worked, it printed true. Run it again with anything except arg1 as the first argument.<br>
+`./countdown.sh arg2 arg3`
+<br> 057 Nothing was printed. One of the optional parts of if was an else area. You can use it like this:
+
+`if [[ CONDITION ]]
+then
+  STATEMENTS
+else
+  STATEMENTS
+fi
+
+Add an else to your existing if condition. Use echo to print false if the condition fails.
+<br>
+`if [[ $1 == arg1 ]]
+then
+  echo true
+else
+    echo false
+fi`
+<br> 058 Run the script again and use anything except arg1 as the only argument.<br>
+`./countdown.sh arg2 arg3`
+<br> 059 Now it printed false. Your program is expecting an integer to count down from as its argument. You can compare integers inside the brackets ([[ ... ]]) of your if with -eq (equal), -ne (not equal), -lt (less than), -le (less than or equal), -gt (greater than), -ge (greater than or equal). Change your if condition to check if your first argument is less than 5.<br>
+`if [[ $1 -lt 5 ]]
+then
+  echo true
+else
+    echo false
+fi`
