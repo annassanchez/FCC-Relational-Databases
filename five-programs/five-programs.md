@@ -84,3 +84,18 @@
 <br> 041 Run it one last time and enter values when it asks to see if you like how it looks.<br>
 `./questionnaire.sh`
 <br> 042 It looks good. I think you are done with that script for now. The next program will be countdown timer. Use the touch command to create a new file named countdown.sh in your project folder.<br>
+`touch countdown.sh`
+<br> 043 Give your file executable permissions so you can run it like the other one. It's the chmod command with the +x flag.<br>
+`chmod +x countdown.sh`
+<br> 044 You want to use the bash interpreter again. Add a shebang at the top of your new file to denote that.<br>
+`#!/bin/bash`
+<br> 045 Comments in bash look like this: # <comment>. Add a comment below the shebang that says Program that counts down to zero from a given argument so people know what it does. Note that the shebang is a special case and is not treated like a comment.<br>
+`#Program that counts down to zero from a given argument`
+<br> 046 Programs can take arguments. You can access them a few different ways with $. Add echo $* in your script to print all arguments passed to it.<br>
+`echo $*`
+<br> 047 Execute your script with ./countdown.sh.<br>
+`./countdown.sh`
+<br> 048 Nothing was printed. Run your script again, but this time add three arguments to the command; arg1, arg2, and arg3. Place them after the command with a space before each one.<br>
+`./countdown.sh arg1 arg2 arg3`
+<br> 049 $* printed all the arguments passed to your script. To access any one of them, use $<number>. arg2 could have been accessed with $2. Change your script to echo the first argument instead of all the arguments.<br>
+`echo $1`
