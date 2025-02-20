@@ -56,9 +56,45 @@
 #   echo $i
 #   sleep 1
 # done
+# echo -e "\n~~ Countdown Timer ~~\n"
+# for (( i = $1; i >= 0; i-- ))
+# do
+#   echo $i
+#   sleep 1
+# done
+# echo -e "\n~~ Countdown Timer ~~\n"
+# : '
+# for (( i = $1; i >= 0; i-- ))
+# do
+#   echo $i
+#   sleep 1
+# done
+# '
+# I=$1
+# echo -e "\n~~ Countdown Timer ~~\n"
+# : '
+# while [[ $I -ge 0 ]]
+# do
+#   echo $I
+# done
+# '
+# I=$1
+# echo -e "\n~~ Countdown Timer ~~\n"
+# while [[ $I -ge 0 ]]
+# do
+#   echo $I
+#   (( I-- ))
+# done
+# echo -e "\n~~ Countdown Timer ~~\n"
+# while [[ $I -ge 0 ]]
+# do
+#   echo $I
+#   (( I-- ))
+# done
 echo -e "\n~~ Countdown Timer ~~\n"
-for (( i = $1; i >= 0; i-- ))
+while [[ $I -ge 0 ]]
 do
-  echo $i
+  echo $I
+  (( I-- ))
   sleep 1
 done
