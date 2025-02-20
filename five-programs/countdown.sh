@@ -45,6 +45,12 @@
 #   echo $i
 #   sleep 1
 # done
+# for (( i = $1; i >= 0; i-- ))
+# do
+#   echo $i
+#   sleep 1
+# done
+echo -e "\n~~ Countdown Timer ~~\n"
 for (( i = $1; i >= 0; i-- ))
 do
   echo $i
