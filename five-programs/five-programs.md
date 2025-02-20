@@ -206,3 +206,128 @@ fi`
 `[[ -x countdown.sh || 5 -le 4 ]]; echo $?`
 <br> 085 One of the conditions was true so it printed 0. I think that's enough of a detour. Back in your script, change the if condition to check if the first argument is greater than zero so you can be sure it's something you can count down from.<br>
 `[[ -x countdown.sh || 5 -le 4 ]]; echo $?`
+<br> 086 The condition you added checks if a positive integer was passed as an argument to the script and executes the then area. Change the existing echo command to print Include a positive integer as the first argument. if a positive integer is not used.<br>
+`if [[ $1 -gt 0 ]]
+then
+  echo true
+else
+  echo "Include a positive integer as the first argument."
+fi`
+<br> 087 Run your script and use 1 as a first argument to make sure the condition is working<br>
+`./countdown.sh 1`
+<br> 088 Run it again and use anything but a positive integer as the only argument.<br>
+`./countdown.sh -1`
+<br> 089 Looks like your if condition is working. Next, you want to loop over the argument and count down to zero from it. Check the help menu to see if there's any commands for this.<br>
+`help`
+<br> 090 There's two for loops in there, you want the second one. Here's an example:
+
+`for (( i = 10; i > 0; i-- ))
+do
+  echo $i
+done`
+
+The above creates a variable (i = 10), then prints it, subtracts one, and repeats until i is not greater than 0. So it prints 10 through 1. In the then area of your condition, replace the echo with a for loop that prints from the argument ($1) to 1.
+<br>
+`for (( i = $1; i > 0; i-- ))
+do
+  echo $i
+done
+`
+<br> 091 Run your script and use 10 as the first argument.<br>
+`./countdown.sh 10`
+<br> 092 It works 😄 But I want it to pause for one second between each number. Check the help menu again to see if there's any commands that might help.<br>
+`help`
+<br> 093 I'm not seeing the command I was hoping to. These are the built-in commands, where are the rest? Type ls / to look around.<br>
+`ls /`
+<br> 094 The / listed what's in the root of the file system. I see a bin folder, bin stands for binary. View what's in it with ls /bin.<br>
+`ls /bin`
+<br> 095 These are some non built-in commands. There's quite a few that should look familiar. One is bash, that's the one you used for the shebang in your scripts. I see one called sleep. View the manual of it.<br>
+`man sleep`
+<br> 096 At the top, it says you can pause execution for a number of seconds. Try it out by entering sleep 3 in the terminal.<br>
+`sleep 3`
+<br> 097 That should work. In your for loop, use sleep to make the script pause for 1 second after each number is printed.<br>
+`for (( i = $1; i > 0; i-- ))
+do
+  echo $i
+  sleep 1
+done`
+<br> 098 Run your script and use 3 as the first argument.<br>
+`./countdown.sh 3`
+<br> 099 Awesome. Except it should print 0 instead of stopping at 1. Change the condition in your for loop so that it checks for i >= 0.<br>
+`for (( i = $1; i >= 0; i-- ))
+do
+  echo $i
+  sleep 1
+done`
+<br> 100 Run your script with 3 as the argument again.<br>
+`./countdown.sh 3`
+<br> 101 Excellent. I want it to display a title like the other script. Make it so that it prints ~~ Countdown Timer ~~ before anything else. Include a new line before and after it like you did for the other title.<br>
+`echo -e "\n~~ Countdown Timer ~~\n"
+for (( i = $1; i >= 0; i-- ))
+do
+  echo $i
+  sleep 1
+done`
+<br> 102 Run your script and use 1 as the first argument again to see the title.<br>
+`./countdown.sh 1`
+<br> 103 This is fun. You can create a multiline comment like this:
+
+: '
+  comment here
+  more comment here
+'
+
+Comment out your for loop with a multiline comment. I want to try and do this with a while loop.<br>
+`echo -e "\n~~ Countdown Timer ~~\n"
+for (( i = $1; i >= 0; i-- ))
+do
+  echo $i
+  sleep 1
+done`
+<br> 104 View the help menu for the while command to see if you can find anything.<br>
+`help while`
+<br> 105 It shows the syntax. First, below your comment, create a variable named I that is set to the value of your first argument. It will start there, then on each iteration of the while loop you can subtract 1 from it until it reaches 0.<br>
+`echo -e "\n~~ Countdown Timer ~~\n"
+: '
+for (( i = $1; i >= 0; i-- ))
+do
+  echo $i
+  sleep 1
+done
+'
+I=$1`
+<br> 106 The menu showed that you can make a while loop like this:
+
+while [[ CONDITION ]]
+do
+  STATEMENTS
+done
+
+Add a while loop below the I variable you made. The condition should be $I -ge 0 and you should echo the I variable in the do statements.<br>
+`echo -e "\n~~ Countdown Timer ~~\n"
+: '
+while [[ $I -ge 0 ]]
+do
+  echo $I
+done
+'
+I=$1`
+<br> 107<br>
+`echo -e "\n~~ Countdown Timer ~~\n"
+while [[ $I -ge 0 ]]
+do
+  echo $I
+  (( I-- ))
+done`
+<br> 108 The last thing to do is to add the sleep again. In your while loop, add the code to make it sleep for 1 second. Add the code after the (( I-- )).<br>
+`echo -e "\n~~ Countdown Timer ~~\n"
+while [[ $I -ge 0 ]]
+do
+  echo $I
+  (( I-- ))
+  sleep 1
+done`
+<br> 109 Run the script and use 5 as the first argument.<br>
+`./countdown.sh 5`
+<br> 110 Run the script and use 5 as the first argument.<br>
+`./countdown.sh 5`
