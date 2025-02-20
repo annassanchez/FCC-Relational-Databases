@@ -40,7 +40,12 @@
 # do
 #   echo $i
 # done
-for (( i = $1; i > 0; i-- ))
+# for (( i = $1; i > 0; i-- ))
+# do
+#   echo $i
+#   sleep 1
+# done
+for (( i = $1; i >= 0; i-- ))
 do
   echo $i
   sleep 1
