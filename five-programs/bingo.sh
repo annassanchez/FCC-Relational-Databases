@@ -6,6 +6,9 @@
 # echo -e "\n~~ Bingo Number Generator ~~\n"
 # NUMBER=$RANDOM
 # echo $NUMBER
+# echo -e "\n~~ Bingo Number Generator ~~\n"
+# NUMBER=$RANDOM%75
+# echo $NUMBER
 echo -e "\n~~ Bingo Number Generator ~~\n"
-NUMBER=$RANDOM%75
+NUMBER=$(( RANDOM % 75 + 1 ))
 echo $NUMBER
