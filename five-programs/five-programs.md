@@ -106,7 +106,7 @@
 <br> 052 This is a list of built-in commands. You should look over it, some of them may look familiar. I see echo in there. Another one is if. See if you can find out more about it by checking its man page.<br>
 `man if`
 <br> 053 I guess there isn't a man page for it. At the top of the help screen, I noticed you can use help <command> to find out more. Yet another way to find out about a command 😥 See if you can find out more about if with that method.<br>
-`hekp if`
+`help if`
 <br> 054 The syntax is at the top, not all of it is required. Here's another example:
 
 `if [[ CONDITION ]]
@@ -205,7 +205,12 @@ fi`
 <br> 084 Both conditions weren't true, so the exit status was 1 for false. Try testing the same two conditions with the or operator.<br>
 `[[ -x countdown.sh || 5 -le 4 ]]; echo $?`
 <br> 085 One of the conditions was true so it printed 0. I think that's enough of a detour. Back in your script, change the if condition to check if the first argument is greater than zero so you can be sure it's something you can count down from.<br>
-`[[ -x countdown.sh || 5 -le 4 ]]; echo $?`
+`if [[ $1 -gt 0 ]]
+then
+  echo true
+else
+  echo false
+fi`
 <br> 086 The condition you added checks if a positive integer was passed as an argument to the script and executes the then area. Change the existing echo command to print Include a positive integer as the first argument. if a positive integer is not used.<br>
 `if [[ $1 -gt 0 ]]
 then
@@ -279,20 +284,22 @@ done`
 
 Comment out your for loop with a multiline comment. I want to try and do this with a while loop.<br>
 `echo -e "\n~~ Countdown Timer ~~\n"
-for (( i = $1; i >= 0; i-- ))
-do
-  echo $i
-  sleep 1
-done`
-<br> 104 View the help menu for the while command to see if you can find anything.<br>
-`help while`
-<br> 105 It shows the syntax. First, below your comment, create a variable named I that is set to the value of your first argument. It will start there, then on each iteration of the while loop you can subtract 1 from it until it reaches 0.<br>
-`echo -e "\n~~ Countdown Timer ~~\n"
 : '
 for (( i = $1; i >= 0; i-- ))
 do
   echo $i
   sleep 1
+done
+'
+I=$1`
+<br> 104 View the help menu for the while command to see if you can find anything.<br>
+`help while`
+<br> 105 It shows the syntax. First, below your comment, create a variable named I that is set to the value of your first argument. It will start there, then on each iteration of the while loop you can subtract 1 from it until it reaches 0.<br>
+`echo -e "\n~~ Countdown Timer ~~\n"
+: '
+while [[ $I -ge 0 ]]
+do
+  echo $I
 done
 '
 I=$1`
@@ -312,7 +319,7 @@ do
 done
 '
 I=$1`
-<br> 107<br>
+<br> 107 I never changes here, so you would have an infinite loop. You can subtract one from I with double parenthesis (((...))) and the -- operator. In your while loop, add (( I-- )) after you echo $I to subtract one from I on each pass.<br>
 `echo -e "\n~~ Countdown Timer ~~\n"
 while [[ $I -ge 0 ]]
 do
@@ -329,5 +336,5 @@ do
 done`
 <br> 109 Run the script and use 5 as the first argument.<br>
 `./countdown.sh 5`
-<br> 110 Run the script and use 5 as the first argument.<br>
-`./countdown.sh 5`
+<br> 110 I think the countdown timer is finished. Feel free to try it with some other arguments. The next one is a bingo number generator. Use touch to create bingo.sh in the same folder as the others.<br>
+`touch bingo.sh`
