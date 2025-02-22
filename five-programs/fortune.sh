@@ -42,16 +42,35 @@
 # RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
 # N=$(( RANDOM % 6 ))
 # echo ${RESPONSES[$N]}
+# echo -e "\n~~ Fortune Teller ~~\n"
+
+# GET_FORTUNE() {
+#   echo "Ask a yes or no question:"
+# }
+
+# until [[ $QUESTION =~ \?$ ]]
+# do
+#   GET_FORTUNE
+#   read QUESTION
+# done
+
+# RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+# N=$(( RANDOM % 6 ))
+# echo ${RESPONSES[$N]}
 echo -e "\n~~ Fortune Teller ~~\n"
 
 GET_FORTUNE() {
-  echo "Ask a yes or no question:"
+    if [[ ! $1 ]]
+    then
+        echo Ask a yes or no question:
+    fi
+
+    read QUESTION
 }
 
 until [[ $QUESTION =~ \?$ ]]
 do
   GET_FORTUNE
-  read QUESTION
 done
 
 RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
