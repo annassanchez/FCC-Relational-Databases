@@ -503,3 +503,290 @@ else
 fi`
 <br> 154 Run your script a few times and make sure it's working.<br>
 `./bingo.sh`
+<br> 155 I think the generator is done 😄 The next project is a fortune teller. Use the touch command to create fortune.sh in the same folder as the other scripts.<br>
+`touch fortune.sh`
+<br> 156 Give your file executable permissions.<br>
+`chmod +x fortune.sh`
+<br> 157 Add a shebang at the top of your new file that uses bash again.<br>
+`#!/bin/bash`
+<br> 158 Add comment Program to tell a persons fortune<br>
+`#Program to tell a persons fortune`
+<br> 159 Add a title for this one like the others. This one should say ~~ Fortune Teller ~~. Don't forget the empty line before and after it.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"`
+<br> 160 Run the file once to make sure it's working.<br>
+`./fortune.sh`
+<br> 161 This program will have an array of responses. One will be printed randomly after a user inputs a question. Practice first 😄 In the terminal, create an array like this: ARR=("a" "b" "c")<br>
+`ARR=("a" "b" "c")`
+<br> 162 Each variable in the array is like any other variable, just combined into a single variable. In the terminal, print the second item in the array with echo ${ARR[1]}. Note that the first item would be index zero.<br>
+`echo ${ARR[1]}`
+<br> 163 If you recall, you were able to print all the arguments to your countdown.sh script with echo $*. echo $@ would have worked as well. Similarly, you can use the * or @ to print your whole array. In the terminal, use echo to print all the items in your array.<br>
+`echo ${ARR[@]}`
+<br> 164 The variable must be in that declare list. View your array variable using the declare command and the -p flag.<br>
+`declare -p ARR`
+<br> 165 The -a next to it stands for array. In your script, create an array named RESPONSES. Give it these six values: Yes, No, Maybe, Outlook good, Don't count on it, and Ask again later.<br>
+`RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")`
+<br> 166 In your script, use echo to print the last item in the array.<br>
+`echo ${RESPONSES[5]}`
+<br> 167 Run it to see the output.<br>
+`./fortune.sh`
+<br> 168 You will randomly print one of the values. In your script, create a variable named N. Set it equal to a random number between 0 and 5, the first and last index of the array.<br>
+`N=$(( RANDOM % 6 ))`
+<br> 169 Change your echo command to print the item in the array whose index is the random number you generated.<br>
+`N=$(( RANDOM % 6 ))`
+<br> 170 Change your echo command to print the item in the array whose index is the random number you generated.<br>
+`echo ${RESPONSES[$N]}`
+<br> 171 You will create a function to generate an answer. Check the help menu to see if you can find anything.<br>
+`help`
+<br> 172 See any that might help? There's one that says function. See if you can find out more about it.<br>
+`help function`
+<br> 173 It looks like you can create a function like this:
+
+FUNCTION_NAME() {
+  STATEMENTS
+}
+
+Add an empty function named GET_FORTUNE to your script. Make sure the response you are printing is the last thing in the script.<br>
+`GET_FORTUNE() {}`
+<br> 174 In your function, use echo to print Ask a yes or no question:<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+echo ${RESPONSES[5]}
+N=$(( RANDOM % 6 ))
+echo ${RESPONSES[$N]}
+GET_FORTUNE() {
+  echo Ask a yes or no question:
+}`
+<br> 175 Call your function by putting the name of it below where you create it. No $ needed. Make sure the response you are printing is at the bottom of the file.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+echo ${RESPONSES[5]}
+N=$(( RANDOM % 6 ))
+echo ${RESPONSES[$N]}
+GET_FORTUNE() {
+  echo Ask a yes or no question:
+}
+GET_FORTUNE`
+<br> 176 Run your script to make sure it's working.<br>
+`./fortune.sh`
+<br> 177 In your function after you print the sentence, use read to get user input into a variable named QUESTION.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+echo ${RESPONSES[5]}
+N=$(( RANDOM % 6 ))
+echo ${RESPONSES[$N]}
+GET_FORTUNE() {
+  echo Ask a yes or no question:
+}
+GET_FORTUNE
+read QUESTION`
+<br> 178 Run the script again to test it out. Enter a question when it asks.<br>
+`./fortune.sh`
+<br> 179 I want to make sure the input is a question. You are going to add a loop that asks for input until the input ends with a question mark. View the help menu to see if you can find an appropriate loop.<br>
+`help`
+<br> 180 View more about that until command. That might be the one to use here.<br>
+`help until`
+<br> 181 The until loop is very similar to the while loop you used. It will execute the loop until a condition is met. Here's an example:
+
+until [[ CONDITION ]]
+do
+  STATEMENTS
+done
+
+Add an until loop below your function. Use the double brackets to check if QUESTION is equal to test?. Move the GET_FORTUNE function call to the statements area of the loop. It should run the function until you input test? as the question.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+
+GET_FORTUNE() {
+  echo "Ask a yes or no question:"
+}
+
+read QUESTION
+until [[ $QUESTION == "test?" ]]
+do
+  echo $QUESTION
+  GET_FORTUNE
+  
+done
+
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+N=$(( RANDOM % 6 ))
+echo ${RESPONSES[$N]}`
+<br> 182 Run the script and enter something other than test?. Then enter test? after it asks for a question the second time.<br>
+`./fortune.sh`
+<br> 183 View that help [[ expression ]] menu again. You need to find out how to test if the input ends with a question mark (?).<br>
+`help [[ expression ]]`
+<br> 184 Let's play with these again. You can test if two strings are the same with ==. In the terminal, use the [[ ... ]]; echo $? syntax you used before to test if hello is equal to hello.<br>
+`[ hello == hello ]]; echo $?`
+<br> 185 Exit status of 0, it was true. Using the same syntax, test if hello is equal to world.<br>
+`[[ hello == world ]]; echo $?`
+<br> 186 False. An important operator in that menu is =~. It allows for pattern matching. Using the same syntax but with this operator, check if hello contains the pattern el.<br>
+`[[ hello =~ el ]]; echo $?`
+<br> 187 True. The condition was checking for el within the word hello. Using the same syntax, check if hello world contains the pattern lo wor. You will need to put them both in quotes so it recognizes the spaces.<br>
+`[[  "hello world" =~ "lo wor" ]]; echo $?`
+<br> 188 Your patterns have been checking for literal matches, el and lo wor. You can use regular expression characters as well, but you can't put the pattern in quotes when you do. Using the same syntax, check if hello world starts with an h by using ^h as the pattern.<br>
+`[[  "hello world" =~ ^h ]]; echo $?`
+<br> 189 Do it again, but use ^h.+d$ as the pattern to see if the string starts with an h, has at least one character after it, and ends with a d.<br>
+`[[  "hello world" =~ ^h.+d$ ]]; echo $?`
+<br> 190 In the terminal, create a variable named VAR that equals hello world.<br>
+`VAR="hello world"`
+<br> 191 Use echo to print the variable you just created.<br>
+`echo $VAR`
+<br> 192 Using the [[ ... ]]; echo $? syntax, check if your variable is equal to hello world<br>
+`[[ $VAR == "hello world" ]]; echo $?`
+<br> 193 Using the same syntax, check if your variable ends with ? by using the pattern \?$.<br>
+`[[ $VAR =~ \?$ ]]; echo $?`
+<br> 194 It doesn't end with ?. Just to make sure I don't have the pattern wrong, check if test? ends with ?.<br>
+`[[ "test?" =~ \?$ ]]; echo $?`
+<br> 195 I think that will work. Back in your script, change the until condition to see if your variable ends with ?.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+
+GET_FORTUNE() {
+  echo "Ask a yes or no question:"
+}
+
+until [[ $QUESTION =~ \?$ ]]
+do
+  GET_FORTUNE
+  read QUESTION
+done
+
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+N=$(( RANDOM % 6 ))
+echo ${RESPONSES[$N]}`
+<br> 196 Run the script and input something that doesn't end with ? the first time, then something that does the second.<br>
+`./fortune.sh`
+<br> 197 I know that it asks the same thing if the input isn't what you want. You should let users know that it needs to end with ?. Add an if condition in your function that checks if [[ ! $1 ]]. Put the existing echo statement in the then area and make sure the existing read is below the whole if condition.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+
+GET_FORTUNE() {
+    if [[ ! $1 ]]
+    then
+        echo Ask a yes or no question:
+    fi
+
+    read QUESTION
+}
+
+until [[ $QUESTION =~ \?$ ]]
+do
+  GET_FORTUNE
+done
+
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+N=$(( RANDOM % 6 ))
+echo ${RESPONSES[$N]}`
+<br> 198 You can pass arguments to functions like you did with your script. This condition will check if one isn't passed and print the sentence. Add an else to your if. Use echo to print Try again. Make sure it ends with a question mark: if the condition fails.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+
+GET_FORTUNE() {
+    if [[ ! $1 ]]
+    then
+        echo Ask a yes or no question:
+    else
+        echo Try again. Make sure it ends with a question mark:
+    fi
+
+    read QUESTION
+}
+
+until [[ $QUESTION =~ \?$ ]]
+do
+  GET_FORTUNE
+done
+
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+N=$(( RANDOM % 6 ))
+echo ${RESPONSES[$N]}`
+<br> 199 You can pass arguments to functions like you did with your script. This condition will check if one isn't passed and print the sentence. Add an else to your if. Use echo to print Try again. Make sure it ends with a question mark: if the condition fails.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+
+GET_FORTUNE() {
+    if [[ ! $1 ]]
+    then
+        echo Ask a yes or no question:
+    else
+        echo Try again. Make sure it ends with a question mark:
+    fi
+
+    read QUESTION
+}
+
+until [[ $QUESTION =~ \?$ ]]
+do
+  GET_FORTUNE
+done
+
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+N=$(( RANDOM % 6 ))
+echo ${RESPONSES[$N]}`
+<br> 200 Now, your function will print one thing if you pass it any argument, and something else if not. In the until loop, add again as an argument to where you call the function.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+
+GET_FORTUNE() {
+    if [[ ! $1 ]]
+    then
+        echo Ask a yes or no question:
+    else
+        echo Try again. Make sure it ends with a question mark:
+    fi
+
+    read QUESTION
+}
+
+until [[ $QUESTION =~ \?$ ]]
+do
+  GET_FORTUNE again
+done
+
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+N=$(( RANDOM % 6 ))
+echo ${RESPONSES[$N]}`
+<br> 201 Now, each time the function is called in the until loop, it will pass again as an argument and print the Try again... sentence. Before your until loop, call the function without an argument so the first time it runs, it prints the initial sentence.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+
+GET_FORTUNE() {
+    if [[ ! $1 ]]
+    then
+        echo Ask a yes or no question:
+    else
+        echo Try again. Make sure it ends with a question mark:
+    fi
+
+    read QUESTION
+}
+
+until [[ $QUESTION =~ \?$ ]]
+do
+  GET_FORTUNE again
+done
+
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+N=$(( RANDOM % 6 ))
+echo ${RESPONSES[$N]}`
+<br> 202 Run the script and enter something without a question mark when it asks the first time. Use a question mark the second time.<br>
+`./fortune.sh`
+<br> 203 Awesome. One last thing. Add an empty line in front of where you print the response.<br>
+`echo -e "\n~~ Fortune Teller ~~\n"
+
+GET_FORTUNE() {
+    if [[ ! $1 ]]
+    then
+        echo Ask a yes or no question:
+    else
+        echo Try again. Make sure it ends with a question mark:
+    fi
+
+    read QUESTION
+}
+
+GET_FORTUNE
+
+until [[ $QUESTION =~ \?$ ]]
+do
+  GET_FORTUNE again
+done
+
+RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
+N=$(( RANDOM % 6 ))
+echo -e "\n${RESPONSES[$N]}"`
+<br> 204 Run the script one more time to see if you like the output.<br>
+`./fortune.sh`
