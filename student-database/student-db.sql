@@ -22,3 +22,11 @@ ALTER TABLE students ADD COLUMN gpa numeric(2,1);
 ALTER TABLE majors ADD COLUMN major_id SERIAL PRIMARY KEY;
 --#19. This table will only have one other column for the name of the major. Add a column to it named major. Make it a VARCHAR with a max-length of 50 and give it the NOT NULL constraint.
 ALTER TABLE majors ADD COLUMN major VARCHAR(50) NOT NULL;
+--#21. This table looks good. Now, set the major_id column from the students table as a foreign key that references the major_id column from the majors table. Here's an example of how to do that: ALTER TABLE <table_name> ADD FOREIGN KEY(<column_name>) REFERENCES <referenced_table_name>(<referenced_column_name>);
+ALTER TABLE students ADD FOREIGN KEY(major_id) REFERENCES majors(major_id);
+--#22. View the details of the students table again to make sure the key is there.
+\d students
+--#23. Next, is the courses table. Add a course_id column to it. Give it a type of SERIAL and make it the primary key.
+ALTER TABLE courses ADD COLUMN course_id SERIAL PRIMARY KEY;
+--#24. Add a course column to the courses table that's a type of VARCHAR. The course names are a little longer, so give them a max-length of 100. Also, make sure it can't accept null values.
+ALTER TABLE courses ADD COLUMN course VARCHAR(100) NOT NULL;
