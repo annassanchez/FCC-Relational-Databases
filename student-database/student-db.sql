@@ -56,3 +56,21 @@ SELECT * FROM majors_courses;
 INSERT INTO students(first_name,last_name,major_id,gpa) VALUES('Rhea','Kellems',1,2.5);
 --#44. Looks like it worked. View all the data in the students table to make sure.
 SELECT * FROM students;
+--#72. In the psql prompt, use SELECT to view all the data from the majors table to see what the script added.
+SELECT * FROM majors;
+--73. I forgot you inserted Database Administration earlier. The script ran and inserted major from the top line of the file. Then it added the other two that weren't already in there. You can use TRUNCATE to delete all data from a table. In the psql prompt, try to delete all the data in the majors table by entering TRUNCATE majors;
+TRUNCATE majors;
+--74. It says you "cannot truncate a table referenced in a foreign key constraint." The students and majors_courses tables use the major_id from majors as a foreign key. So if you want to delete the data from majors, you need to delete the data from those two tables at the same time. Use TRUNCATE to delete the data from those three tables. Separate the tables with commas.
+TRUNCATE majors, students, majors_courses;
+--#75. View all the data in the majors table to make sure it's empty.
+SELECT * FROM majors;
+--#76. Looks like it worked. View all the data in the majors_courses table to see if that one is empty.
+SELECT * FROM majors_courses;
+--#77. It is, check the students table.
+SELECT * FROM students;
+--#78. Last, check the courses table.
+SELECT * FROM courses;
+--#79. There should still be one entry in there. Use TRUNCATE to delete all the data from the courses table. You will need to truncate any tables that use a column from it as a foreign key at the same time.
+TRUNCATE courses, majors_courses;
+--#80. View all the data in the courses table again.
+SELECT * FROM courses;
