@@ -90,3 +90,23 @@ INSERT INTO students(first_name,last_name,major_id,gpa) VALUES('Rhea','Kellems',
 SELECT * FROM students;
 #45. Okay, you added a row into each table. It might be wise to review the data and the database structure. Adding the rest of the info one at a time would be tedious. You are going to make a script to do it for you. I recommend "splitting" the terminal for this part. You can do that by clicking the "hamburger" menu at the top left of the window, going to the "Terminal" menu, and clicking "Split Terminal". Once you've done that, use the touch command to create a file named insert_data.sh in your project folder.
 touch insert_data.sh
+#46. You should have two terminals open. One connected to PostgreSQL, and one for entering terminal commands. In the one for terminal commands, use the chmod command with the +x flag to give you new script executable permissions.
+chmod +x insert_data.sh
+#47. Open your new file and add a "shebang" that uses bash at the top. It looks like this: #!/bin/bash.
+#!/bin/bash
+#48. Below that, add a single line comment with the text, Script to insert data from courses.csv and students.csv into students database.
+#Script to insert data from courses.csv and students.csv into students database
+#49. First, you should add all the info from the courses.csv file since you need the major_id for inserting the student info. cat is a terminal command for printing the contents of a file. Here's an example: cat <filename>. Below the comment you added, use it to print courses.csv.
+cat courses.csv
+# 51. It worked. Instead of printing the content, you can pipe that output into a while loop so you can go through the rows one at a time. It looks like this:
+
+#     cat courses.csv | while read MAJOR COURSE
+#     do
+#     <STATEMENTS>
+#     done
+
+# Each new line will be read into the variables, MAJOR and COURSE. Add the above to your cat command. In the STATEMENTS area, use echo to print the MAJOR variable.
+cat courses.csv | while read MAJOR COURSE
+do
+    echo $MAJOR
+done
