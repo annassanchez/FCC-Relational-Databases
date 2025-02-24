@@ -30,3 +30,13 @@ ALTER TABLE students ADD FOREIGN KEY(major_id) REFERENCES majors(major_id);
 ALTER TABLE courses ADD COLUMN course_id SERIAL PRIMARY KEY;
 --#24. Add a course column to the courses table that's a type of VARCHAR. The course names are a little longer, so give them a max-length of 100. Also, make sure it can't accept null values.
 ALTER TABLE courses ADD COLUMN course VARCHAR(100) NOT NULL;
+--#26. One more table to go. The majors_courses junction table will have two columns, each referencing the primary key from two related table. First, add a major_id column to it. Just give it a type of INT for now.
+ALTER TABLE majors_courses ADD COLUMN major_id INT;
+--#27. Set the major_id column you just created as a foreign key that references the major_id column from the majors table.
+ALTER TABLE majors_courses ADD FOREIGN KEY(major_id) REFERENCES majors(major_id);
+--#28. Next, add a course_id column to the same table. Just give it a type of INT again for now.
+ALTER TABLE majors_courses ADD COLUMN course_id INT;
+--#29. Set your new course_id column as a foreign key that references the other course_id column.
+ALTER TABLE majors_courses ADD FOREIGN KEY(course_id) REFERENCES courses(course_id);
+--#31. There's one thing missing. This table doesn't have a primary key. The data from courses.csv will go in this table. A single major will be in it multiple times, and same with a course. So neither of them can be a primary key. But there will never be a row with the same two values as another row. So the two columns together, are unique. You can create a composite primary key that uses more than one column as a unique pair like this: ALTER TABLE <table_name> ADD PRIMARY KEY(<column_name>, <column_name>); Add a composite primary key to the table using the two columns.
+ALTER TABLE majors_courses ADD PRIMARY KEY(major_id, course_id);
