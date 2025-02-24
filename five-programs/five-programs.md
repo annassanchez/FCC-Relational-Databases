@@ -784,9 +784,54 @@ until [[ $QUESTION =~ \?$ ]]
 do
   GET_FORTUNE again
 done
-
+2
 RESPONSES=("Yes" "No" "Maybe" "Outlook good" "Don't count on it" "Ask again later")
 N=$(( RANDOM % 6 ))
 echo -e "\n${RESPONSES[$N]}"`
 <br> 204 Run the script one more time to see if you like the output.<br>
 `./fortune.sh`
+<br> 205 Excellent. One last program to make. Use touch to create a new file named five.sh in the same folder as the others.<br>
+`touch five.sh`
+<br> 206 Give your file executable permissions.<br>
+`chmod +x five.sh`
+<br> 207 Add a shebang to the new script that uses bash like the others.<br>
+`#!/bin/bash`
+<br> 208 Add a comment below the shebang that says, Program to run my other four programs<br>
+`#Program to run my other four programs`
+<br> 209 This program will run all the programs you made so far consecutively. Add the command to run the questionnaire.sh file.<br>
+`./questionnaire.sh`
+<br> 210 Run the file to see if it works. Enter input when it asks.<br>
+`./five.sh`
+<br> 211 Add commands to run the rest of your scripts in the file. They should be in this order: questionnaire, countdown, bingo, and fortune. Don't forget that your countdown.sh file needs an argument, so put a 3 next to it.<br>
+`#!/bin/bash
+
+#Program to run my other four programs
+
+./questionnaire.sh
+./countdown.sh 3
+./bingo.sh
+./fortune.sh`
+<br> 212 Okay, use clear to empty out what's in the terminal before the big moment.<br>
+`clear`
+<br> 213 Run the script and enter input when it asks.<br>
+`./five.sh`
+<br> 214 Cool. I think all the scripts are done. View the help menu again I want to explore one more thing.<br>
+`help`
+<br> 215 View more about that type command.<br>
+`help type`
+<br> 216 It says you can view the type of a command with type <command>. Just for fun, lets take a look at the type of a few different commands. View the type of echo.<br>
+`type echo`
+<br> 217 View the type of the read command.<br>
+`type read`
+<br> 218 View the type of if<br>
+`type if`
+<br> 219 View the type of then<br>
+`type then`
+<br> 220 Those were all from the help menu and described as a shell builtin or shell keyword. View the type of bash<br>
+`type bash`
+<br> 221 That's the location of the bash command. View the type of psql.<br>
+`type psql`
+<br> 222 It's showing the location of the commands. View the type of your ./five.sh file.<br>
+`type ./five.sh`
+<br> 223 Last step, close the terminal with the exit command. Thanks and happy coding!<br>
+`exit`
