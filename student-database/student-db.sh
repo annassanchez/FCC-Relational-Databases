@@ -34,3 +34,9 @@ ALTER TABLE students ADD COLUMN major_id int;
 ALTER TABLE students ADD COLUMN gpa numeric(2,1);
 #17. Use the shortcut command to display the details of the students table to make sure you like it.
 \d students
+#18. The foreign key is still missing. Let's fill in the majors table next. Add a major_id column to it. Make it a type of SERIAL and the PRIMARY KEY for this table.
+ALTER TABLE majors ADD COLUMN major_id SERIAL PRIMARY KEY;
+#19. This table will only have one other column for the name of the major. Add a column to it named major. Make it a VARCHAR with a max-length of 50 and give it the NOT NULL constraint.
+ALTER TABLE majors ADD COLUMN major VARCHAR(50) NOT NULL;
+#20. View the details of the majors table to make sure you like it.
+\d majors

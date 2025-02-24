@@ -18,3 +18,7 @@ ALTER TABLE students ADD COLUMN last_name VARCHAR(50) NOT NULL;
 ALTER TABLE students ADD COLUMN major_id int;
 --#16. Create the last column, gpa. The data in the CSV shows that they are decimals with a length of 2 and 1 number is to the right of the decimal. So give it a data type of NUMERIC(2,1).
 ALTER TABLE students ADD COLUMN gpa numeric(2,1);
+--#18. The foreign key is still missing. Let's fill in the majors table next. Add a major_id column to it. Make it a type of SERIAL and the PRIMARY KEY for this table.
+ALTER TABLE majors ADD COLUMN major_id SERIAL PRIMARY KEY;
+--#19. This table will only have one other column for the name of the major. Add a column to it named major. Make it a VARCHAR with a max-length of 50 and give it the NOT NULL constraint.
+ALTER TABLE majors ADD COLUMN major VARCHAR(50) NOT NULL;
