@@ -82,3 +82,11 @@ SELECT * FROM courses;
 INSERT INTO majors_courses(major_id, course_id) VALUES(1, 1);
 #41. View all the data in the table you just added to.
 SELECT * FROM majors_courses;
+#42. Looks like the row got added. View the details of the students table to remind yourself what it expects so you can add the first student to the database.
+\d students
+#43. The output shows what the table needs. Insert the first person from students.csv into the students table.
+INSERT INTO students(first_name,last_name,major_id,gpa) VALUES('Rhea','Kellems',1,2.5);
+#44. Looks like it worked. View all the data in the students table to make sure.
+SELECT * FROM students;
+#45. Okay, you added a row into each table. It might be wise to review the data and the database structure. Adding the rest of the info one at a time would be tedious. You are going to make a script to do it for you. I recommend "splitting" the terminal for this part. You can do that by clicking the "hamburger" menu at the top left of the window, going to the "Terminal" menu, and clicking "Split Terminal". Once you've done that, use the touch command to create a file named insert_data.sh in your project folder.
+touch insert_data.sh

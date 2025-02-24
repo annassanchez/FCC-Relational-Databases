@@ -52,3 +52,7 @@ SELECT * FROM courses;
 INSERT INTO majors_courses(major_id, course_id) VALUES(1, 1);
 --#41. View all the data in the table you just added to.
 SELECT * FROM majors_courses;
+--#43. The output shows what the table needs. Insert the first person from students.csv into the students table.
+INSERT INTO students(first_name,last_name,major_id,gpa) VALUES('Rhea','Kellems',1,2.5);
+--#44. Looks like it worked. View all the data in the students table to make sure.
+SELECT * FROM students;
