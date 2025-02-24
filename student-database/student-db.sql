@@ -40,3 +40,15 @@ ALTER TABLE majors_courses ADD COLUMN course_id INT;
 ALTER TABLE majors_courses ADD FOREIGN KEY(course_id) REFERENCES courses(course_id);
 --#31. There's one thing missing. This table doesn't have a primary key. The data from courses.csv will go in this table. A single major will be in it multiple times, and same with a course. So neither of them can be a primary key. But there will never be a row with the same two values as another row. So the two columns together, are unique. You can create a composite primary key that uses more than one column as a unique pair like this: ALTER TABLE <table_name> ADD PRIMARY KEY(<column_name>, <column_name>); Add a composite primary key to the table using the two columns.
 ALTER TABLE majors_courses ADD PRIMARY KEY(major_id, course_id);
+--#35. It only needs the name of a major. The ID will be added automatically. Add the first major from the courses.csv file into the majors table. It's a VARCHAR, so make sure to put the value in single quotes.
+INSERT INTO majors(major) VALUES('Database Administration');
+--#36. Use SELECT to view all the data in the majors table to make sure it got inserted correctly.
+SELECT * FROM majors;
+--#37. Next, insert the first course from courses.csv into the courses table.
+INSERT INTO courses(course) VALUES('Data Structures and Algorithms');
+--#38. View all the data in the courses table to make sure it got added.
+SELECT * FROM courses;
+--#40. It wants a major_id and course_id. Add a row to majors_courses for the first entry in courses.csv.
+INSERT INTO majors_courses(major_id, course_id) VALUES(1, 1);
+--#41. View all the data in the table you just added to.
+SELECT * FROM majors_courses;

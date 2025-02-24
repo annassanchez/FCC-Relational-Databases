@@ -64,3 +64,21 @@ ALTER TABLE majors_courses ADD FOREIGN KEY(course_id) REFERENCES courses(course_
 ALTER TABLE majors_courses ADD PRIMARY KEY(major_id, course_id);
 #32. View the details of the table again.
 \d majors_courses;
+#33. View the details of the table again.
+\d
+#34. Next, you can start adding some info. Since the students table needs a major_id, you can add a major first. View the details of the majors table to see what info it expects.
+\d majors
+#35. It only needs the name of a major. The ID will be added automatically. Add the first major from the courses.csv file into the majors table. It's a VARCHAR, so make sure to put the value in single quotes.
+INSERT INTO majors(major) VALUES('Database Administration');
+#36. Use SELECT to view all the data in the majors table to make sure it got inserted correctly.
+SELECT * FROM majors;
+#37. Next, insert the first course from courses.csv into the courses table.
+INSERT INTO courses(course) VALUES('Data Structures and Algorithms');
+#38. View all the data in the courses table to make sure it got added.
+SELECT * FROM courses;
+#39. Next, you can add a row into the junction table. View the details of it to see what it expects.
+\d majors_courses
+#40. It wants a major_id and course_id. Add a row to majors_courses for the first entry in courses.csv.
+INSERT INTO majors_courses(major_id, course_id) VALUES(1, 1);
+#41. View all the data in the table you just added to.
+SELECT * FROM majors_courses;
