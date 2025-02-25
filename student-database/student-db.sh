@@ -1724,3 +1724,15 @@ cat students.csv | while IFS="," read FIRST LAST MAJOR GPA
         fi
 fi
 done  
+#131. Time for the moment of truth. Run the script and see if it works.
+./insert_data.sh
+#132. That was cool. View all the data in the students table to see what you ended up with.
+SELECT * FROM students;
+#133. 31 rows. That's how many are in the CSV file. Perfect. Next, check the majors table.
+SELECT * FROM majors;
+#134. 7 rows. There must be 7 unique majors in the CSV file. View what's in the courses table.
+SELECT * FROM courses;
+#135. Looks like there's 17 unique courses in the CSV file. Last, view the data in majors_courses. This should have the same number of rows at the CSV file.
+SELECT * FROM majors_courses;
+#136. 28 rows, same as the CSV file. I think all the data got added correctly. You don't need your test files anymore. In the terminal, use the list command to check what files are in your project folder.
+ls

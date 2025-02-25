@@ -96,3 +96,13 @@ SELECT * FROM majors;
 SELECT * FROM courses;
 --#108. Lastly, view the data in the majors_courses table. There should be four rows.
 SELECT * FROM majors_courses;
+--#128. I think it's working. View all the data in the students table to make sure it matches the CSV file.
+SELECT * FROM students;
+--#132. That was cool. View all the data in the students table to see what you ended up with.
+SELECT * FROM students;
+--#133. 31 rows. That's how many are in the CSV file. Perfect. Next, check the majors table.
+SELECT * FROM majors;
+--#134. 7 rows. There must be 7 unique majors in the CSV file. View what's in the courses table.
+SELECT * FROM courses;
+--#135. Looks like there's 17 unique courses in the CSV file. Last, view the data in majors_courses. This should have the same number of rows at the CSV file.
+SELECT * FROM majors_courses;
