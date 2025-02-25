@@ -392,3 +392,1357 @@ SELECT * FROM courses;
 TRUNCATE courses, majors_courses;
 #80. View all the data in the courses table again.
 SELECT * FROM courses;
+#81. Now the database is completely empty. Run the script again to see what gets inserted when the database is empty.
+./insert_data.sh
+#82. It inserted four that time. In the psql prompt, view all the data in the majors table.
+SELECT * FROM majors;
+#83. You won't want to add the first line from the CSV file to the database since those are just titles. In your script, add an if condition at the top of your loop that checks if $MAJOR != major. Put all the existing code and comments in your loop in it's statements area so it only does any of it if it's not the first line.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        echo $INSERT_MAJOR_RESULT
+
+        # get new major_id
+
+    fi
+
+    # get course_id
+
+    # if not found
+
+    # insert course
+
+    # get new course_id
+
+    # insert into majors_courses
+    fi
+done
+#84. In the psql prompt, use TRUNCATE to delete all the data in the majors table.
+TRUNCATE majors, students, majors_courses;
+#85. View all the data in majors table to make sure it's empty.
+SELECT * FROM majors;
+#86. Run the script to make sure it's not adding the first line anymore.
+./insert_data.sh
+#87. It only showed three inserts, that's a good sign. View all the data in majors table to make sure it's three you want.
+SELECT * FROM majors;
+#88. There's three unique majors in your test data. Those were the three added to the database, so it looks like it's working. Delete the line where you print INSERT_MAJOR_RESULT.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+
+        # get new major_id
+
+    fi
+
+    # get course_id
+
+    # if not found
+
+    # insert course
+
+    # get new course_id
+
+    # insert into majors_courses
+    fi
+done
+#89. You want a nicer message when something get's inserted so it's more informative. Below your INSERT_MAJOR_RESULT variable, add an if statement that checks if the variable is equal to INSERT 0 1, which was what it was printing. Use echo to print Inserted into majors, $MAJOR in the statements area of the if.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+
+    fi
+
+    # get course_id
+
+    # if not found
+
+    # insert course
+
+    # get new course_id
+
+    # insert into majors_courses
+    fi
+done
+#90. In the psql prompt, truncate the majors table again so you can run the script and see the output.
+TRUNCATE majors, students, majors_courses;
+#91. Check to make sure the table is empty. Then, run the script.
+SELECT * FROM majors;
+./insert_data.sh
+#92. It's starting to come together. Below your get new major_id comment, set the MAJOR_ID variable to a query that gets the new major_id from the database.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+
+    # if not found
+
+    # insert course
+
+    # get new course_id
+
+    # insert into majors_courses
+    fi
+done
+#93. So the script will insert the majors correctly. Next are the courses. It will be the same steps as for the majors. Below your get course_id comment, add a COURSE_ID variable that gets the course_id from the database. Remember that your COURSE variable will have the current course in the loop.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    # insert course
+
+    # get new course_id
+
+    # insert into majors_courses
+    fi
+done
+#94. It's the same as the majors, so below the second if not found comment, add an if statement that checks if the query was empty so you can insert the course if needed. Place the existing insert course and get new course_id comments in the statements area of the if.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        # get new course_id
+    fi
+
+    # insert into majors_courses
+    fi
+done
+#95. Below the insert course comment, create an INSERT_COURSE_RESULT variable that inserts the course into the database.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        # get new course_id
+    fi
+
+    # insert into majors_courses
+    fi
+done
+#96. The variable should be INSERT 0 1 again if something gets inserted. Below the variable you just created, add an if condition that checks if it is and print Inserted into courses, $COURSE using echo in it's statements area.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+    fi
+
+    # insert into majors_courses
+    fi
+done
+#97. In the psql prompt, truncate the data from the majors table so you can run the script again.
+TRUNCATE majors, students, majors_courses;
+#98. Run the script to see if the courses get inserted into the database.
+./insert_data.sh
+#99. It looks like it worked. The test data has three unique courses, and three got added to the database. View the data in the courses table to make sure they are correct.
+SELECT * FROM courses;
+#100. It looks like it worked. The test data has three unique courses, and three got added to the database. View the data in the courses table to make sure they are correct.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+    fi
+
+    # insert into majors_courses
+    fi
+done
+#101. Run the script to see if it works.
+./insert_data.sh
+#102. Awesome. That makes it easier. Below your get new course_id comment, set the COURSE_ID to the newly inserted course_id.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM coursesWHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    fi
+done
+#103. One more thing to add for this file. Below the insert into majors_courses courses comment, create a INSERT_MAJORS_COURSES_RESULT variable. Use it and the MAJOR_ID and COURSE_ID variables you created to insert a row into the majors_courses table. Make sure the query has the major_id column first. Also, you won't need any quotes around the values for the ID's.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM coursesWHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    fi
+done
+#104. Below the variable you just created, add an if condition that checks if it's equal to INSERT 0 1 like the others. In it's statements area, use echo to print Inserted into majors_courses, $MAJOR : $COURSE.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+#105. Run the script. Your tables should get truncated and then it should go through the loop and add all the data from the courses_test.csv into the three tables of the database.
+./insert_data.sh
+#106. Looks like it works. You better look around to make sure. View the data in the majors table.
+SELECT * FROM majors;
+#107. Cool, check the courses table.
+SELECT * FROM courses;
+#108. Lastly, view the data in the majors_courses table. There should be four rows.
+SELECT * FROM majors_courses;
+#109. Alright, that part of the script is done. Next, you need to add everything from the students.csv file. Make some test data again. In the terminal, use the copy command to copy students.csv into a file named students_test.csv.
+cp students.csv students_test.csv
+#111. You want to loop through all this info like you did for the other CSV file. The process is the same. Below your existing loop, use cat to print your new test file. Pipe the results into a while loop, setting the IFS to a comma again, and then use read to create FIRST, LAST, MAJOR and GPA variables from the data. In the loop, use echo to print the FIRST variable.
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+    echo $FIRST
+done
+#112. Run the script to see if it prints the FIRST (first_name) variable correctly. It will take a second since it has to go through the first loop.
+./insert_data.sh
+#113. It works 😅 It printed the first item in each row of the CSV file. It's printing the first line again, you will have to take care of that. First, delete the echo line.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+done
+#114. Add an if condition to the loop that checks if the FIRST variable is not equal to first_name so it doesn't do anything for the first line of the file. Don't put anything in the statements area for now.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+if [[ $FIRST != first_name ]]
+then
+fi
+done    
+#115. All the columns in the CSV file can be inserted directly into the database except for the major. You will need to get the major_id again for that. There's some null values in there as well, so you will need to use null if the major_id isn't found. Add four single line comments in your loop; get major_id, if not found, set to null, and insert student in that order.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+if [[ $FIRST != first_name ]]
+then
+    # get major_id
+
+    # if not found
+
+    # set to null
+
+    # insert student
+
+fi
+done
+#116. Below the new get major_id comment, set the MAJOR_ID variable to a query that gets the major_id for the current students major.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+if [[ $FIRST != first_name ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+
+    # set to null
+
+    # insert student
+
+fi
+done    
+#117. Below that, use echo to print the variable so you can see if it's working.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+if [[ $FIRST != first_name ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    echo $MAJOR_ID
+    # if not found
+
+    # set to null
+
+    # insert student
+
+fi
+done
+#118. Run the script to see what happens.
+./insert_data.sh
+#119. Looking at the test data, it found the ID for all of it except the null value. Below the newest if not found comment, add an if that checks if the variable is empty. Put the set to null comment in its statements area.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+if [[ $FIRST != first_name ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    echo $MAJOR_ID
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # set to null
+    fi
+    # set to null
+
+    # insert student
+
+fi
+done
+#120. When you go to insert the student data, you want to use the MAJOR_ID if it's found, or null if not. Below the set to null comment, set the MAJOR_ID variable to null so you can use it to insert the data.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+if [[ $FIRST != first_name ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    echo $MAJOR_ID
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # set to null
+        MAJOR_ID=null
+    fi
+    # set to null
+
+    # insert student
+
+fi
+done
+#121. Move the echo $MAJOR_ID line to below the if statement so you can run the script and see the value of the variable if the major_id is or isn't found.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+if [[ $FIRST != first_name ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # set to null
+        MAJOR_ID=null
+        echo $MAJOR_ID
+    fi
+    # set to null
+
+    # insert student
+
+fi
+done
+#122. Run the script to see what happens.
+./insert_data.sh
+#123. Okay, that should work for inserting the student. Delete the echo $MAJOR_ID line.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+    do
+    if [[ $FIRST != first_name ]]
+    then
+        # get major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+        
+        # if not found
+        if [[ -z $MAJOR_ID ]]
+        then
+            # set to null
+            MAJOR_ID=null
+        fi
+        # set to null
+
+        # insert student
+
+    fi
+    done
+#124. One last thing to add. In the psql prompt, view the details of the students table so you can see what columns to add.
+\d students
+#125. You will need to set the four columns when adding the student info. All of them except student_id. Below the insert student comment, create an INSERT_STUDENT_RESULT variable that adds the student to the database. Add the columns in the order they appear in the data, and make sure to only put the two VARCHAR columns in single quotes.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+    do
+    if [[ $FIRST != first_name ]]
+    then
+        # get major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+        
+        # if not found
+        if [[ -z $MAJOR_ID ]]
+        then
+            # set to null
+            MAJOR_ID=null
+        fi
+
+        # insert student
+        INSERT_STUDENT_RESULT=$($PSQL "INSERT INTO students(first_name, last_name, major_id, gpa) VALUES('$FIRST', '$LAST', $MAJOR_ID, $GPA)")
+    fi
+    done
+#126. Below the variable you just created, add an if statement that checks if it's equal to INSERT 0 1 like the others. If it is, use echo to print Inserted into students, <first_name> <last_name>.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+    do
+    if [[ $FIRST != first_name ]]
+    then
+        # get major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+        
+        # if not found
+        if [[ -z $MAJOR_ID ]]
+        then
+            # set to null
+            MAJOR_ID=null
+        fi
+
+        # insert student
+        INSERT_STUDENT_RESULT=$($PSQL "INSERT INTO students(first_name, last_name, major_id, gpa) VALUES('$FIRST', '$LAST', $MAJOR_ID, $GPA)")
+        if [[ $INSERT_STUDENT_RESULT == "INSERT 0 1" ]]
+        then
+            echo "Inserted into students, $FIRST : $LAST"
+        fi
+fi
+done
+#127. Run the script to see if the students are getting added.
+./insert_data.sh
+#128. I think it's working. View all the data in the students table to make sure it matches the CSV file.
+SELECT * FROM students;
+#129. Excellent. It added all the students from the test data. Time to try it with the original files. Change the cat courses_test.csv line to use the original file again.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+    do
+    if [[ $FIRST != first_name ]]
+    then
+        # get major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+        
+        # if not found
+        if [[ -z $MAJOR_ID ]]
+        then
+            # set to null
+            MAJOR_ID=null
+        fi
+
+        # insert student
+        INSERT_STUDENT_RESULT=$($PSQL "INSERT INTO students(first_name, last_name, major_id, gpa) VALUES('$FIRST', '$LAST', $MAJOR_ID, $GPA)")
+        if [[ $INSERT_STUDENT_RESULT == "INSERT 0 1" ]]
+        then
+            echo "Inserted into students, $FIRST : $LAST"
+        fi
+fi
+done
+#130. Next, change the cat students_test.csv line to use the original file as well.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students.csv | while IFS="," read FIRST LAST MAJOR GPA
+    do
+    if [[ $FIRST != first_name ]]
+    then
+        # get major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+        
+        # if not found
+        if [[ -z $MAJOR_ID ]]
+        then
+            # set to null
+            MAJOR_ID=null
+        fi
+
+        # insert student
+        INSERT_STUDENT_RESULT=$($PSQL "INSERT INTO students(first_name, last_name, major_id, gpa) VALUES('$FIRST', '$LAST', $MAJOR_ID, $GPA)")
+        if [[ $INSERT_STUDENT_RESULT == "INSERT 0 1" ]]
+        then
+            echo "Inserted into students, $FIRST : $LAST"
+        fi
+fi
+done  
+#131. Time for the moment of truth. Run the script and see if it works.
+./insert_data.sh
+#132. That was cool. View all the data in the students table to see what you ended up with.
+SELECT * FROM students;
+#133. 31 rows. That's how many are in the CSV file. Perfect. Next, check the majors table.
+SELECT * FROM majors;
+#134. 7 rows. There must be 7 unique majors in the CSV file. View what's in the courses table.
+SELECT * FROM courses;
+#135. Looks like there's 17 unique courses in the CSV file. Last, view the data in majors_courses. This should have the same number of rows at the CSV file.
+SELECT * FROM majors_courses;
+#136. 28 rows, same as the CSV file. I think all the data got added correctly. You don't need your test files anymore. In the terminal, use the list command to check what files are in your project folder.
+ls
+#137. Use the remove command (rm) to delete the students_test.csv file.
+rm students_test.csv
+#138. Use the same command to delete the courses_test.csv file.
+rm courses_test.csv
+#139. List the contents of the folder again to make sure they're gone.
+ls
+#140. The database is finished for now. The last thing you are going to do is make a "dump" of it. The pg_dump command can do that for you. Use the --help flag with the command to see what it can do.
+pg_dump --help
+#141. This is the last step. There's quite a few options there. Enter pg_dump --clean --create --inserts --username=freecodecamp students > students.sql in the terminal to dump the database into a students.sql file. It will save all the commands needed to rebuild it. Take a quick look at the file when you are done.
+pg_dump --clean --create --inserts --username=freecodecamp students > students.sql

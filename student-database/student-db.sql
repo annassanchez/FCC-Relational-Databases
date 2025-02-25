@@ -74,3 +74,35 @@ SELECT * FROM courses;
 TRUNCATE courses, majors_courses;
 --#80. View all the data in the courses table again.
 SELECT * FROM courses;
+--#82. It inserted four that time. In the psql prompt, view all the data in the majors table.
+SELECT * FROM majors;
+--#84. In the psql prompt, use TRUNCATE to delete all the data in the majors table.
+TRUNCATE majors, students, majors_courses;
+--#85. View all the data in majors table to make sure it's empty.
+SELECT * FROM majors;
+--#87. It only showed three inserts, that's a good sign. View all the data in majors table to make sure it's three you want.
+SELECT * FROM majors;
+--#90. In the psql prompt, truncate the majors table again so you can run the script and see the output.
+TRUNCATE majors, students, majors_courses;
+--#91. Check to make sure the table is empty. Then, run the script.
+SELECT * FROM majors;
+--#97. In the psql prompt, truncate the data from the majors table so you can run the script again.
+TRUNCATE majors, students, majors_courses;
+--#99. It looks like it worked. The test data has three unique courses, and three got added to the database. View the data in the courses table to make sure they are correct.
+SELECT * FROM courses;
+--#106. Looks like it works. You better look around to make sure. View the data in the majors table.
+SELECT * FROM majors;
+--#107. Cool, check the courses table.
+SELECT * FROM courses;
+--#108. Lastly, view the data in the majors_courses table. There should be four rows.
+SELECT * FROM majors_courses;
+--#128. I think it's working. View all the data in the students table to make sure it matches the CSV file.
+SELECT * FROM students;
+--#132. That was cool. View all the data in the students table to see what you ended up with.
+SELECT * FROM students;
+--#133. 31 rows. That's how many are in the CSV file. Perfect. Next, check the majors table.
+SELECT * FROM majors;
+--#134. 7 rows. There must be 7 unique majors in the CSV file. View what's in the courses table.
+SELECT * FROM courses;
+--#135. Looks like there's 17 unique courses in the CSV file. Last, view the data in majors_courses. This should have the same number of rows at the CSV file.
+SELECT * FROM majors_courses;
