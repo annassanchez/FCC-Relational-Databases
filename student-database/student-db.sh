@@ -888,3 +888,108 @@ cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
 do
     echo $FIRST
 done
+#112. Run the script to see if it prints the FIRST (first_name) variable correctly. It will take a second since it has to go through the first loop.
+./insert_data.sh
+#113. It works 😅 It printed the first item in each row of the CSV file. It's printing the first line again, you will have to take care of that. First, delete the echo line.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+done
+#114. Add an if condition to the loop that checks if the FIRST variable is not equal to first_name so it doesn't do anything for the first line of the file. Don't put anything in the statements area for now.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo $($PSQL "TRUNCATE students, majors, courses, majors_courses")
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+        MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+    fi
+
+    # get course_id
+    COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+
+    # if not found
+
+    if [[ -z $COURSE_ID ]]
+    then
+        # insert course
+        INSERT_COURSE_RESULT=$($PSQL "INSERT INTO courses(course) VALUES('$COURSE')")
+        if [[ $INSERT_COURSE_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into courses, $COURSE
+        fi
+        # get new course_id
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
+    fi
+
+    # insert into majors_courses
+    INSERT_MAJORS_COURSES_RESULT=$($PSQL "INSERT INTO majors_courses(major_id, course_id) VALUES($MAJOR_ID, $COURSE_ID)")
+    if [[ $INSERT_MAJORS_COURSES_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors_courses, $MAJOR : $COURSE
+    fi
+fi
+done
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+if [[ $FIRST != first_name ]]
+then
+fi
+done    
