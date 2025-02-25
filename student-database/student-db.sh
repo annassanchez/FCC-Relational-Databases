@@ -1736,3 +1736,13 @@ SELECT * FROM courses;
 SELECT * FROM majors_courses;
 #136. 28 rows, same as the CSV file. I think all the data got added correctly. You don't need your test files anymore. In the terminal, use the list command to check what files are in your project folder.
 ls
+#137. Use the remove command (rm) to delete the students_test.csv file.
+rm students_test.csv
+#138. Use the same command to delete the courses_test.csv file.
+rm courses_test.csv
+#139. List the contents of the folder again to make sure they're gone.
+ls
+#140. The database is finished for now. The last thing you are going to do is make a "dump" of it. The pg_dump command can do that for you. Use the --help flag with the command to see what it can do.
+pg_dump --help
+#141. This is the last step. There's quite a few options there. Enter pg_dump --clean --create --inserts --username=freecodecamp students > students.sql in the terminal to dump the database into a students.sql file. It will save all the commands needed to rebuild it. Take a quick look at the file when you are done.
+pg_dump --clean --create --inserts --username=freecodecamp students > students.sql
