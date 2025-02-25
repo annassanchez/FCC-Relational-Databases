@@ -467,3 +467,37 @@ then
     # insert into majors_courses
     fi
 done
+#89. You want a nicer message when something get's inserted so it's more informative. Below your INSERT_MAJOR_RESULT variable, add an if statement that checks if the variable is equal to INSERT 0 1, which was what it was printing. Use echo to print Inserted into majors, $MAJOR in the statements area of the if.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+        if [[ $INSERT_MAJOR_RESULT == "INSERT 0 1" ]]
+        then
+            echo Inserted into majors, $MAJOR
+        fi
+        # get new major_id
+
+    fi
+
+    # get course_id
+
+    # if not found
+
+    # insert course
+
+    # get new course_id
+
+    # insert into majors_courses
+    fi
+done
