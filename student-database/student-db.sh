@@ -428,3 +428,42 @@ then
     # insert into majors_courses
     fi
 done
+#84. In the psql prompt, use TRUNCATE to delete all the data in the majors table.
+TRUNCATE majors, students, majors_courses;
+#85. View all the data in majors table to make sure it's empty.
+SELECT * FROM majors;
+#86. Run the script to make sure it's not adding the first line anymore.
+./insert_data.sh
+#87. It only showed three inserts, that's a good sign. View all the data in majors table to make sure it's three you want.
+SELECT * FROM majors;
+#88. There's three unique majors in your test data. Those were the three added to the database, so it looks like it's working. Delete the line where you print INSERT_MAJOR_RESULT.
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+cat courses_test.csv | while IFS="," read MAJOR COURSE
+do
+if [[ $MAJOR != major ]]
+then
+    # get major_id
+    MAJOR_ID=$($PSQL "SELECT major_id FROM majors WHERE major='$MAJOR'")
+
+    # if not found
+    if [[ -z $MAJOR_ID ]]
+    then
+        # insert major
+        INSERT_MAJOR_RESULT=$($PSQL "INSERT INTO majors(major) VALUES('$MAJOR')")
+
+        # get new major_id
+
+    fi
+
+    # get course_id
+
+    # if not found
+
+    # insert course
+
+    # get new course_id
+
+    # insert into majors_courses
+    fi
+done
