@@ -862,7 +862,7 @@ then
             echo Inserted into courses, $COURSE
         fi
         # get new course_id
-        COURSE_ID=$($PSQL "SELECT course_id FROM coursesWHERE course='$COURSE'")
+        COURSE_ID=$($PSQL "SELECT course_id FROM courses WHERE course='$COURSE'")
     fi
 
     # insert into majors_courses
@@ -873,3 +873,11 @@ then
     fi
 fi
 done
+#105. Run the script. Your tables should get truncated and then it should go through the loop and add all the data from the courses_test.csv into the three tables of the database.
+./insert_data.sh
+#106. Looks like it works. You better look around to make sure. View the data in the majors table.
+SELECT * FROM majors;
+#107. Cool, check the courses table.
+SELECT * FROM courses;
+#108. Lastly, view the data in the majors_courses table. There should be four rows.
+SELECT * FROM majors_courses;

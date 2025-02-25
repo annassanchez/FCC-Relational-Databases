@@ -86,3 +86,13 @@ SELECT * FROM majors;
 TRUNCATE majors, students, majors_courses;
 --#91. Check to make sure the table is empty. Then, run the script.
 SELECT * FROM majors;
+--#97. In the psql prompt, truncate the data from the majors table so you can run the script again.
+TRUNCATE majors, students, majors_courses;
+--#99. It looks like it worked. The test data has three unique courses, and three got added to the database. View the data in the courses table to make sure they are correct.
+SELECT * FROM courses;
+--#106. Looks like it works. You better look around to make sure. View the data in the majors table.
+SELECT * FROM majors;
+--#107. Cool, check the courses table.
+SELECT * FROM courses;
+--#108. Lastly, view the data in the majors_courses table. There should be four rows.
+SELECT * FROM majors_courses;
