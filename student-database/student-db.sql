@@ -74,3 +74,15 @@ SELECT * FROM courses;
 TRUNCATE courses, majors_courses;
 --#80. View all the data in the courses table again.
 SELECT * FROM courses;
+--#82. It inserted four that time. In the psql prompt, view all the data in the majors table.
+SELECT * FROM majors;
+--#84. In the psql prompt, use TRUNCATE to delete all the data in the majors table.
+TRUNCATE majors, students, majors_courses;
+--#85. View all the data in majors table to make sure it's empty.
+SELECT * FROM majors;
+--#87. It only showed three inserts, that's a good sign. View all the data in majors table to make sure it's three you want.
+SELECT * FROM majors;
+--#90. In the psql prompt, truncate the majors table again so you can run the script and see the output.
+TRUNCATE majors, students, majors_courses;
+--#91. Check to make sure the table is empty. Then, run the script.
+SELECT * FROM majors;
