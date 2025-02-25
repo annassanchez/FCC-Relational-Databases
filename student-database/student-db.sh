@@ -881,3 +881,10 @@ SELECT * FROM majors;
 SELECT * FROM courses;
 #108. Lastly, view the data in the majors_courses table. There should be four rows.
 SELECT * FROM majors_courses;
+#109. Alright, that part of the script is done. Next, you need to add everything from the students.csv file. Make some test data again. In the terminal, use the copy command to copy students.csv into a file named students_test.csv.
+cp students.csv students_test.csv
+#111. You want to loop through all this info like you did for the other CSV file. The process is the same. Below your existing loop, use cat to print your new test file. Pipe the results into a while loop, setting the IFS to a comma again, and then use read to create FIRST, LAST, MAJOR and GPA variables from the data. In the loop, use echo to print the FIRST variable.
+cat students_test.csv | while IFS="," read FIRST LAST MAJOR GPA
+do
+    echo $FIRST
+done
