@@ -101,3 +101,26 @@ echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")
 echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
 echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
 echo -e "\nFirst name, last name, and GPA of students whose last name begins with an 'R' or after and have a GPA greater than 3.8 or less than 2.0:"
+#36. To find that, start by using the psql prompt to view all the data in the students table.
+SELECT * FROM students;
+#37. It returned 31 rows. Use the same command, but only return the rows for students whose last name comes before M in the alphabet.
+SELECT * FROM students WHERE last_name < 'M';
+#38. That returned 18 rows. You can use multiple conditions after WHERE with AND or OR, among others. Just add the keyword and another condition. In the psql prompt, use the same command as before, but add an OR to also return rows of students with a 3.9 GPA.
+SELECT * FROM students WHERE last_name < 'M' or gpa = 3.9;
+#39. It showed rows where one of the conditions was true, there was one more than last time. Enter the previous command, but use AND to view only students that meet both conditions.
+SELECT * FROM students WHERE last_name < 'M' AND gpa = 3.9;
+#40. Now it only shows rows where both conditions are true, one person. Enter the previous command, but add a third condition of OR gpa < 2.3.
+SELECT * FROM students WHERE last_name < 'M' AND gpa = 3.9 OR gpa < 2.3;
+#41. This showed all students whose GPA is less than 2.3 because the final OR condition was true for them. It didn't matter what their last name started with. You can group conditions together with parenthesis like this: WHERE <condition_1> AND (<condition_2> OR <condition_2>). This would only return rows where <condition_1> is true and one of the others is true. View students whose last name is before M that have a GPA of 3.9 or less than 2.3.
+SELECT * FROM students WHERE last_name < 'M' AND (gpa = 3.9 OR gpa < 2.3);
+#42. Two students meet those conditions. Back in the student info file, add an echo command at the bottom to print the suggested rows.
+#!/bin/bash
+#Info about my computer science students from students database
+echo -e "\n~~ My Computer Science Students ~~\n"
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo -e "\nFirst name, last name, and GPA of students with a 4.0 GPA:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")"
+echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
+echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
+echo -e "\nFirst name, last name, and GPA of students whose last name begins with an 'R' or after and have a GPA greater than 3.8 or less than 2.0:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE last_name >= 'R' AND (gpa > 3.8 OR gpa < 2.0)")"
