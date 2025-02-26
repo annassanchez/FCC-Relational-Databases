@@ -68,3 +68,24 @@ PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only
 echo -e "\nFirst name, last name, and GPA of students with a 4.0 GPA:"
 echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")"
 echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
+#27. Practice first. In the psql prompt, view all the data in the majors table.
+SELECT * FROM majors;
+#28. The operators you used with numbers in the last section can be used on text as well. Use the = to view all majors named Game Design. Don't forget that You need single quotes around text values.
+SELECT * FROM majors WHERE major = 'Game Design';
+#29. Next, view all the rows not equal to Game Design.
+SELECT * FROM majors WHERE major != 'Game Design';
+#30. Use the greater than operator to see majors that come after it alphabetically.
+SELECT * FROM majors WHERE major > 'Game Design';
+#31. Game Design was not included in the results because it is not > 'Game Design'. Try it with the greater than or equal to operator.
+SELECT * FROM majors WHERE major >= 'Game Design';
+#32. It included Game Design in the results that time. So if you want to see results that start with a G or after, you could use major >= 'G'. View the majors that come before G.
+SELECT * FROM majors WHERE major < 'G';
+#33. In your script, add an echo at the bottom to print the suggested info like you did before. Make sure to use double quotes where needed.
+#!/bin/bash
+#Info about my computer science students from students database
+echo -e "\n~~ My Computer Science Students ~~\n"
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo -e "\nFirst name, last name, and GPA of students with a 4.0 GPA:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")"
+echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
+echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
