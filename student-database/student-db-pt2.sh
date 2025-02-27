@@ -138,3 +138,38 @@ echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
 echo -e "\nFirst name, last name, and GPA of students whose last name begins with an 'R' or after and have a GPA greater than 3.8 or less than 2.0:"
 echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE last_name >= 'R' AND (gpa > 3.8 OR gpa < 2.0)")"
 echo -e "\nLast name of students whose last name contains a case insensitive 'sa' or have an 'r' as the second to last letter:"
+#45. Start by viewing everything from the courses table in the psql prompt to see how you might be able to find this out.
+SELECT * FROM courses;
+#46. There's a few that contain the word Algorithms. You can use LIKE to find patterns in text like this: WHERE <column> LIKE '<pattern>'. An underscore (_) in a pattern will return rows that have any character in that spot. View the rows in this table with a course name that matches the pattern '_lgorithms'.
+SELECT * FROM courses WHERE course LIKE '_lgorithms';
+#47. That pattern matched only rows that had exactly one character, followed by lgorithms. Another pattern character is %. It means anything can be there. To find names that start with W, you could use W%. View the courses that end in lgorithms.
+SELECT * FROM courses WHERE course LIKE '%lgorithms';
+#48. It found two that time. Try viewing courses that start with Web.
+SELECT * FROM courses WHERE course LIKE 'Web%';
+#49. Combine the two pattern matching characters to show courses that have a second letter of e.
+SELECT * FROM courses WHERE course LIKE '_e%';
+#50. Nice job! Try viewing the courses with a space in their names.
+SELECT * FROM courses WHERE course LIKE '% %';
+#51. There they are. You can use NOT LIKE to find things that don't match a pattern. View courses that don't contain a space.
+SELECT * FROM courses WHERE course NOT LIKE '% %';
+#52. Five courses without a space. Try finding the ones that contain an A.
+SELECT * FROM courses WHERE course LIKE '%A%';
+#53. 6 rows. This showed all the courses with a capital A. ILIKE will ignore the case of the letters when matching. Use it to see the courses with an A or a.
+SELECT * FROM courses WHERE course ILIKE '%A%';
+#54. It found 11 rows that time. You can put NOT in front of ILIKE as well. Use it to see the courses that don't contain an A or a.
+SELECT * FROM courses WHERE course NOT ILIKE '%A%';
+#55. You combine these like any other conditions. View the courses that don't have a capital or lowercase A and have a space.
+SELECT * FROM courses WHERE course NOT ILIKE '%A%' and course LIKE '% %';
+#56. In your student info script, add an echo statement at the bottom like the other to print the results of the suggested query.
+#!/bin/bash
+#Info about my computer science students from students database
+echo -e "\n~~ My Computer Science Students ~~\n"
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo -e "\nFirst name, last name, and GPA of students with a 4.0 GPA:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")"
+echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
+echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
+echo -e "\nFirst name, last name, and GPA of students whose last name begins with an 'R' or after and have a GPA greater than 3.8 or less than 2.0:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE last_name >= 'R' AND (gpa > 3.8 OR gpa < 2.0)")"
+echo -e "\nLast name of students whose last name contains a case insensitive 'sa' or have an 'r' as the second to last letter:"
+echo "$($PSQL "SELECT last_name FROM students WHERE last_name ILIKE '%sa%' or last_name LIKE '%r_'")"
