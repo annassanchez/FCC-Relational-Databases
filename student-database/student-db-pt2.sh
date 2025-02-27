@@ -281,3 +281,36 @@ echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE major_id IS
 echo -e "\nCourse name of the first five courses, in reverse alphabetical order, that have an 'e' as the second letter or end with an 's':"
 echo "$($PSQL "SELECT course FROM courses WHERE course LIKE '_e%' or course LIKE '%s' ORDER BY course DESC LIMIT 5")" 
 echo -e "\nAverage GPA of all students rounded to two decimal places:"
+#76. There's a number of mathematic functions to use with numerical columns. One of them is MIN, you can use it when selecting a column like this: SELECT MIN(<column>) FROM <table>. It will find the lowest value in the column. In the psql prompt, view the lowest value in the gpa column of the students table.
+SELECT MIN(gpa) FROM students;
+#77. Another one is MAX, use it to see the largest gpa of the same table.
+SELECT MAX(gpa) FROM students;
+#78. In the same fashion, use a SUM function find out what all the values of the major_id column in the students table add up to.
+SELECT SUM(major_id) FROM students;
+#79. AVG will give you the average of all the values in a column. Use it to see the average of the same column.
+SELECT AVG(major_id) FROM students;
+#80. You can round decimals up or down to the nearest whole number with CEIL and FLOOR, respectively. Use CEIL to round the average major_id up to the nearest whole number. Here's an example: CEIL(<number_to_round>).
+SELECT CEIL(AVG(major_id)) FROM students;
+#81. Or, you can round a number to the nearest whole number with ROUND. Use it to round the average of the major_id column to the nearest whole number.
+SELECT ROUND(AVG(major_id)) FROM students;
+#82. You can round to a specific number of decimal places by adding a comma and number to ROUND, like this: ROUND(<number_to_round>, <decimals_places>). Round the average of the major_id to five decimal places.
+SELECT ROUND(AVG(major_id), 5) FROM students;
+#83. You should be able to find what your script is asking for now. Add the command to print it.
+#!/bin/bash
+#Info about my computer science students from students database
+echo -e "\n~~ My Computer Science Students ~~\n"
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo -e "\nFirst name, last name, and GPA of students with a 4.0 GPA:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")"
+echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
+echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
+echo -e "\nFirst name, last name, and GPA of students whose last name begins with an 'R' or after and have a GPA greater than 3.8 or less than 2.0:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE last_name >= 'R' AND (gpa > 3.8 OR gpa < 2.0)")"
+echo -e "\nLast name of students whose last name contains a case insensitive 'sa' or have an 'r' as the second to last letter:"
+echo "$($PSQL "SELECT last_name FROM students WHERE last_name ILIKE '%sa%' or last_name LIKE '%r_'")"
+echo -e "\nFirst name, last name, and GPA of students who have not selected a major and either their first name begins with 'D' or they have a GPA greater than 3.0:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE major_id IS NULL and (first_name LIKE 'D%' or gpa > 3)")"
+echo -e "\nCourse name of the first five courses, in reverse alphabetical order, that have an 'e' as the second letter or end with an 's':"
+echo "$($PSQL "SELECT course FROM courses WHERE course LIKE '_e%' or course LIKE '%s' ORDER BY course DESC LIMIT 5")" 
+echo -e "\nAverage GPA of all students rounded to two decimal places:"
+echo "$($PSQL "SELECT ROUND(AVG(gpa), 2) FROM students")" 
