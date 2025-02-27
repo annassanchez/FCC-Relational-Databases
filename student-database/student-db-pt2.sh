@@ -188,4 +188,31 @@ echo -e "\nFirst name, last name, and GPA of students whose last name begins wit
 echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE last_name >= 'R' AND (gpa > 3.8 OR gpa < 2.0)")"
 echo -e "\nLast name of students whose last name contains a case insensitive 'sa' or have an 'r' as the second to last letter:"
 echo "$($PSQL "SELECT last_name FROM students WHERE last_name ILIKE '%sa%' or last_name LIKE '%r_'")"
-echo -e "\nirst name, last name, and GPA of students who have not selected a major and either their first name begins with 'D' or they have a GPA greater than 3.0:"
+echo -e "\nFirst name, last name, and GPA of students who have not selected a major and either their first name begins with 'D' or they have a GPA greater than 3.0:"
+#59. Start by looking at all the data in the students table.
+SELECT * FROM students;
+#60. All the fields that are empty or blank are null. You can access them using IS NULL as a condition like this: WHERE <column> IS NULL. View the students who don't have a GPA.
+SELECT * FROM students WHERE gpa IS NULL;
+#61. Inversely, you can use IS NOT NULL to see rows that aren't null. View all the info on students that do have a GPA.
+SELECT * FROM students WHERE gpa IS NOT NULL;
+#62. View all the info on students who haven't chosen a major.
+SELECT * FROM students WHERE major_id IS NULL;
+#63. View the students who don't have a major, but don't include students without a GPA.
+SELECT * FROM students WHERE major_id IS NULL and gpa is not null;
+#64. One more. View the students who don't have a major and gpa.
+SELECT * FROM students WHERE major_id IS NULL and gpa is null;
+#65. In your script, add an echo command at the bottom to print the results the sentence is looking for.
+#!/bin/bash
+#Info about my computer science students from students database
+echo -e "\n~~ My Computer Science Students ~~\n"
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo -e "\nFirst name, last name, and GPA of students with a 4.0 GPA:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")"
+echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
+echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
+echo -e "\nFirst name, last name, and GPA of students whose last name begins with an 'R' or after and have a GPA greater than 3.8 or less than 2.0:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE last_name >= 'R' AND (gpa > 3.8 OR gpa < 2.0)")"
+echo -e "\nLast name of students whose last name contains a case insensitive 'sa' or have an 'r' as the second to last letter:"
+echo "$($PSQL "SELECT last_name FROM students WHERE last_name ILIKE '%sa%' or last_name LIKE '%r_'")"
+echo -e "\nFirst name, last name, and GPA of students who have not selected a major and either their first name begins with 'D' or they have a GPA greater than 3.0:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE major_id IS NULL and (first_name LIKE 'D%' or gpa > 3)")"
