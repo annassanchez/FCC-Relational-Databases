@@ -314,3 +314,72 @@ echo -e "\nCourse name of the first five courses, in reverse alphabetical order,
 echo "$($PSQL "SELECT course FROM courses WHERE course LIKE '_e%' or course LIKE '%s' ORDER BY course DESC LIMIT 5")" 
 echo -e "\nAverage GPA of all students rounded to two decimal places:"
 echo "$($PSQL "SELECT ROUND(AVG(gpa), 2) FROM students")" 
+#84. Run the script to see the courses.
+./student_info.sh
+#85. They're doing pretty good. Add another command to print Major ID, total number of students in a column named 'number_of_students', and average GPA rounded to two decimal places in a column name 'average_gpa', for each major ID in the students table having a student count greater than 1:
+#!/bin/bash
+#Info about my computer science students from students database
+echo -e "\n~~ My Computer Science Students ~~\n"
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo -e "\nFirst name, last name, and GPA of students with a 4.0 GPA:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")"
+echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
+echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
+echo -e "\nFirst name, last name, and GPA of students whose last name begins with an 'R' or after and have a GPA greater than 3.8 or less than 2.0:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE last_name >= 'R' AND (gpa > 3.8 OR gpa < 2.0)")"
+echo -e "\nLast name of students whose last name contains a case insensitive 'sa' or have an 'r' as the second to last letter:"
+echo "$($PSQL "SELECT last_name FROM students WHERE last_name ILIKE '%sa%' or last_name LIKE '%r_'")"
+echo -e "\nFirst name, last name, and GPA of students who have not selected a major and either their first name begins with 'D' or they have a GPA greater than 3.0:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE major_id IS NULL and (first_name LIKE 'D%' or gpa > 3)")"
+echo -e "\nCourse name of the first five courses, in reverse alphabetical order, that have an 'e' as the second letter or end with an 's':"
+echo "$($PSQL "SELECT course FROM courses WHERE course LIKE '_e%' or course LIKE '%s' ORDER BY course DESC LIMIT 5")" 
+echo -e "\nAverage GPA of all students rounded to two decimal places:"
+echo "$($PSQL "SELECT ROUND(AVG(gpa), 2) FROM students")" 
+echo -e "\nMajor ID, total number of students in a column named 'number_of_students', and average GPA rounded to two decimal places in a column name 'average_gpa', for each major ID in the students table having a student count greater than 1:"
+#86. Another function is COUNT. You can use it like this: COUNT(<column>). It will tell you how many entries are in a table for the column. Try it out in the psql prompt by using COUNT(*) to see how many majors there are.
+SELECT COUNT(*) FROM majors;
+#87. Using the same method, check how many students you have.
+SELECT COUNT(*) FROM students;
+#88. Using * like that told you how many total rows are in the table. View the count of the major_id column in the students table to see how many of your students have picked a major.
+SELECT COUNT(major_id) FROM students;
+#89. Using major_id didn't count the null values in that column. 23 students have a major. DISTINCT is a function that will show you only unique values. You can use it like this: DISTINCT(<column>). View the unique major_id values in the students table.
+SELECT DISTINCT(major_id) FROM students;
+#90. There's six unique major_id values in the students table. You can get the same results with GROUP BY. Here's an example of how to use it: SELECT <column> FROM <table> GROUP BY <column>. Use this method to view the unique major_id values in the students table again.
+SELECT major_id FROM students GROUP BY major_id;
+#91. The output was the same as DISTINCT, but with GROUP BY you can add any of the aggregate functions (MIN, MAX, COUNT, etc) to it to find more information. For instance, if you wanted to see how many students were in each major you could use SELECT COUNT(*) FROM students GROUP BY major_id. View the major_id column and number of students in each major_id.
+SELECT major_id, count(*) FROM students GROUP BY major_id;
+#92. When using GROUP BY, any columns in the SELECT area must be included in the GROUP BY area. Other columns must be used with any of the aggregate functions (MAX, AVG, COUNT, etc). View the unique major_id values with GROUP BY again, but see what the lowest GPA is in each of them.
+SELECT major_id, min(gpa) FROM students GROUP BY major_id;
+#93. Nice job. Enter the same query, but add a column that shows you the highest GPA in each major as well.
+SELECT major_id, MIN(gpa), MAX(gpa) FROM students GROUP BY major_id;
+#94. Another option with GROUP BY is HAVING. You can add it at the end like this: SELECT <column> FROM <table> GROUP BY <column> HAVING <condition>. The condition must be an aggregate function with a test. An example to might be to use HAVING COUNT(*) > 0 to only show what whatever column is grouped that have at least one row. Use HAVING to only show rows from the last query that have a maximum GPA of 4.0.
+SELECT major_id, MIN(gpa), MAX(gpa) FROM students GROUP BY major_id HAVING MAX(gpa) = 4;
+#95. Two of your majors have at least one student with a 4.0 GPA. Looking at the results, the column is named min. You can rename a column with AS like this: SELECT <column> AS <new_column_name> Enter the same command, but rename the min column to min_gpa.
+SELECT major_id, MIN(gpa) as min_gpa, MAX(gpa) FROM students GROUP BY major_id HAVING MAX(gpa) = 4;
+#96. Now the column has a better name. Enter the same command, but rename the max column to max_gpa as well.
+SELECT major_id, MIN(gpa) as min_gpa, MAX(gpa) as max_gpa FROM students GROUP BY major_id HAVING MAX(gpa) = 4;
+#97. That's more descriptive. View the major_id and number of students in each major_id in a column named number_of_students.
+SELECT major_id, count(*) as number_of_students FROM students GROUP BY major_id;
+#98. Use HAVING with the last query to only show the rows with less than eight students in the major.
+SELECT major_id, count(*) as number_of_students FROM students GROUP BY major_id HAVING count(*) < 8;
+#99. Well done. Back in your script, add the command the print the suggested results.
+#!/bin/bash
+#Info about my computer science students from students database
+echo -e "\n~~ My Computer Science Students ~~\n"
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+echo -e "\nFirst name, last name, and GPA of students with a 4.0 GPA:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")"
+echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
+echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
+echo -e "\nFirst name, last name, and GPA of students whose last name begins with an 'R' or after and have a GPA greater than 3.8 or less than 2.0:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE last_name >= 'R' AND (gpa > 3.8 OR gpa < 2.0)")"
+echo -e "\nLast name of students whose last name contains a case insensitive 'sa' or have an 'r' as the second to last letter:"
+echo "$($PSQL "SELECT last_name FROM students WHERE last_name ILIKE '%sa%' or last_name LIKE '%r_'")"
+echo -e "\nFirst name, last name, and GPA of students who have not selected a major and either their first name begins with 'D' or they have a GPA greater than 3.0:"
+echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE major_id IS NULL and (first_name LIKE 'D%' or gpa > 3)")"
+echo -e "\nCourse name of the first five courses, in reverse alphabetical order, that have an 'e' as the second letter or end with an 's':"
+echo "$($PSQL "SELECT course FROM courses WHERE course LIKE '_e%' or course LIKE '%s' ORDER BY course DESC LIMIT 5")" 
+echo -e "\nAverage GPA of all students rounded to two decimal places:"
+echo "$($PSQL "SELECT ROUND(AVG(gpa), 2) FROM students")" 
+echo -e "\nMajor ID, total number of students in a column named 'number_of_students', and average GPA rounded to two decimal places in a column name 'average_gpa', for each major ID in the students table having a student count greater than 1:"
+echo "$($PSQL "SELECT major_id, count(*) as number_of_students, ROUND(AVG(gpa), 2) as average_gpa FROM students GROUP BY major_id HAVING count(*) > 1")"
