@@ -778,5 +778,192 @@
     echo -e "\nAverage GPA of all students rounded to two decimal places:"
     echo "$($PSQL "SELECT ROUND(AVG(gpa), 2) FROM students")" 
     echo -e "\nMajor ID, total number of students in a column named 'number_of_students', and average GPA rounded to two decimal places in a column name 'average_gpa', for each major ID in the students table having a student count greater than 1:"
+    echo "$($PSQL "SELECT major_id, count(*) as number_of_students, ROUND(AVG(gpa), 2) as average_gpa FROM students GROUP BY major_id HAVING count(*) > 1;")"
+    ```
+
+100. Run the script to see the output.
+
+    ```bash
+    ./student_info.sh
+    ```
+
+101. Add an echo command to your script like the others that prints List of majors, in alphabetical order, that either no student is taking or has a student whose first name contains a case insensitive 'ma':
+
+    ```bash
+    #!/bin/bash
+    #Info about my computer science students from students database
+    echo -e "\n~~ My Computer Science Students ~~\n"
+    PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+    echo -e "\nFirst name, last name, and GPA of students with a 4.0 GPA:"
+    echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")"
+    echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
+    echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
+    echo -e "\nFirst name, last name, and GPA of students whose last name begins with an 'R' or after and have a GPA greater than 3.8 or less than 2.0:"
+    echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE last_name >= 'R' AND (gpa > 3.8 OR gpa < 2.0)")"
+    echo -e "\nLast name of students whose last name contains a case insensitive 'sa' or have an 'r' as the second to last letter:"
+    echo "$($PSQL "SELECT last_name FROM students WHERE last_name ILIKE '%sa%' or last_name LIKE '%r_'")"
+    echo -e "\nFirst name, last name, and GPA of students who have not selected a major and either their first name begins with 'D' or they have a GPA greater than 3.0:"
+    echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE major_id IS NULL and (first_name LIKE 'D%' or gpa > 3)")"
+    echo -e "\nCourse name of the first five courses, in reverse alphabetical order, that have an 'e' as the second letter or end with an 's':"
+    echo "$($PSQL "SELECT course FROM courses WHERE course LIKE '_e%' or course LIKE '%s' ORDER BY course DESC LIMIT 5")" 
+    echo -e "\nAverage GPA of all students rounded to two decimal places:"
+    echo "$($PSQL "SELECT ROUND(AVG(gpa), 2) FROM students")" 
+    echo -e "\nMajor ID, total number of students in a column named 'number_of_students', and average GPA rounded to two decimal places in a column name 'average_gpa', for each major ID in the students table having a student count greater than 1:"
     echo "$($PSQL "SELECT major_id, count(*) as number_of_students, ROUND(AVG(gpa), 2) as average_gpa FROM students GROUP BY major_id HAVING count(*) > 1")"
+    echo -e "\nList of majors, in alphabetical order, that either no student is taking or has a student whose first name contains a case insensitive 'ma':"
+    ```
+
+102. The majors and students table are linked with the major_id foreign key. If you want to see the name of a major that a student is taking, you need to JOIN the two tables into one. Here's an example of how to do that:
+SELECT * FROM <table_1> FULL JOIN <table_2> ON <table_1>.<foreign_key_column> = <table_2>.<foreign_key_column>;
+In the psql prompt, join the two tables together with the above method.
+
+    ```sql
+    SELECT *  FROM students FULL JOIN majors on students.major_id = majors.major_id;
+    ```
+
+103. It's showing all the columns from both tables, the two major_id columns are the same in each row for the ones that have it. You can see that there are some students without a major, and some majors without any students. The FULL JOIN you used will include all rows from both tables, whether or not they have a row using that foreign key in the other. From there, you could use any of the previous methods to narrow down, group, order, etc. Use a LEFT JOIN to join the same two tables in the same way.
+
+    ```sql
+    SELECT *  FROM students LEFT JOIN majors on students.major_id = majors.major_id;
+    ```
+
+104. There's a few less rows than the last query. In the LEFT JOIN you used, the students table was the left table since it was on the left side of the JOIN. majors was the right table. A LEFT JOIN gets all rows from the left table, but only rows from the right table that are linked to from the left one. Looking at the data, you can see that every student was returned, but the majors without any students were not. Join the same two tables with a RIGHT JOIN this time.
+
+    ```sql
+    SELECT *  FROM students LEFT JOIN majors on students.major_id = majors.major_id;
+    ```
+
+105. There's a few less rows than the last query. In the LEFT JOIN you used, the students table was the left table since it was on the left side of the JOIN. majors was the right table. A LEFT JOIN gets all rows from the left table, but only rows from the right table that are linked to from the left one. Looking at the data, you can see that every student was returned, but the majors without any students were not. Join the same two tables with a RIGHT JOIN this time.
+
+    ```sql
+    SELECT *  FROM students RIGHT JOIN majors on students.major_id = majors.major_id;
+    ```
+
+106. The right join showed all the rows from the right table (majors), but only rows from the left table (students) if they have a major. There's one more type you should know about. Join the two tables with an INNER JOIN.
+
+    ```sql
+    SELECT *  FROM students INNER JOIN majors on students.major_id = majors.major_id;
+    ```
+
+107. The INNER JOIN only returned students if they have a major and majors that have a student. In other words, it only returned rows if they have a value in the foreign key column (major_id) of the opposite table. You should know a little about the four main types of joins now. Try using a LEFT JOIN to show all the majors but only students that have a major.
+
+    ```sql
+    SELECT *  FROM majors LEFT JOIN students on majors.major_id = students.major_id;
+    ```
+
+108. Excellent. All the majors are there. Next, use the appropriate join to show only students that are enrolled in a major, and only majors that have a student enrolled in it.
+
+    ```sql
+    SELECT *  FROM majors INNER JOIN students on majors.major_id = students.major_id;
+    ```
+
+109. 👍 Try using a right join to show all students but only majors if a student is enrolled in it.
+
+    ```sql
+    SELECT *  FROM majors RIGHT JOIN students on majors.major_id = students.major_id;
+    ```
+
+110. That showed all the students since it was the right table of the RIGHT JOIN. Use the appropriate join with the same two table to show all rows in both tables whether they have a value in the foreign key column or not.
+
+    ```sql
+    SELECT *  FROM majors FULL JOIN students on majors.major_id = students.major_id;
+    ```
+
+111. Lets do some more experiments with joins. Say you wanted to find a list of majors that students are taking. Use the most efficient JOIN to join the two tables you need. Only join the tables for now, don't use any other conditions.
+
+    ```sql
+    SELECT * FROM students INNER JOIN majors on majors.major_id = students.major_id;
+    ```
+
+112. Good. To get the list, you don't need all the columns, though. Enter the same command, but just get the column you need.
+
+    ```sql
+    SELECT major FROM students INNER JOIN majors on majors.major_id = students.major_id;
+    ```
+
+113. You also don't want any duplicates. Use DISTINCT to only return the unique ones to see the list of majors who have students.
+
+    ```sql
+    SELECT DISTINCT(major) FROM students INNER JOIN majors on majors.major_id = students.major_id;
+    ```
+
+114. There's your list of majors that students are taking 😄 Next, say you wanted a list of majors that students aren't taking. Use the most efficient JOIN to join the two tables you need. Only join the tables for now, don't use any other conditions.
+
+    ```sql
+    SELECT * FROM students RIGHT JOIN majors on majors.major_id = students.major_id;
+    ```
+
+115. That got you all the majors, you can see the ones that don't have any students. Add a WHERE condition to only see the majors without students, use student_id in it's condition.
+
+    ```sql
+    SELECT * FROM students RIGHT JOIN majors on majors.major_id = students.major_id WHERE student_id is NULL;
+    ```
+
+116. Now you only have the rows you need. Only get the columns you need with it to see the list of majors without students.
+
+    ```sql
+    SELECT major FROM students RIGHT JOIN majors on majors.major_id = students.major_id WHERE student_id is NULL;
+    ```
+
+117. You're doing great. Next, use the most efficient 'JOIN' to join the tables you would need if you were asked to get the first name, last name, major, and GPA of students who are taking Data Science or have a gpa of 3.8 or greater. Only join the tables for now, don't use any other conditions.
+
+    ```sql
+    SELECT * FROM students LEFT JOIN majors ON students.major_id = majors.major_id;
+    ```
+
+118. Enter the same command, but use WHERE to only get the students that meet the requirements. As a reminder, the goal was to find students who are taking Data Science or have a gpa of 3.8 or greater.
+
+    ```sql
+    SELECT * FROM students LEFT JOIN majors on majors.major_id = students.major_id WHERE major = 'Data Science' or gpa >= 3.8;
+    ```
+
+119. Now, you have narrowed it down the rows you are looking for. Enter the same command, but only get the columns you need. There was four of them, the students first name, last name, their major, and GPA. Get them in that order.
+
+    ```sql
+    SELECT first_name, last_name, major, gpa FROM students LEFT JOIN majors on majors.major_id = students.major_id WHERE major = 'Data Science' or gpa >= 3.8;
+    ```
+
+120. From there, you could put them in a specific order if you wanted or limit the results to a certain number among other things. Lastly, use the most efficient 'JOIN' to join the tables you would need if you were asked to get the first name and major for students whose first_name, or the major, contains ri. Only join the tables for now, don't use any other conditions.
+
+    ```sql
+    SELECT * FROM students FULL JOIN majors on majors.major_id = students.major_id;
+    ```
+
+121. From there, you could put them in a specific order if you wanted or limit the results to a certain number among other things. Lastly, use the most efficient 'JOIN' to join the tables you would need if you were asked to get the first name and major for students whose first_name, or the major, contains ri. Only join the tables for now, don't use any other conditions.
+
+    ```sql
+    SELECT * FROM students FULL JOIN majors on majors.major_id = students.major_id WHERE first_name LIKE '%ri%' OR major LIKE '%ri%';
+    ```
+
+122. Finally, you only wanted to display the first_name and major columns. Enter the previous query, but only get the columns you need.
+
+    ```sql
+    SELECT first_name, major FROM students FULL JOIN majors on majors.major_id = students.major_id WHERE first_name LIKE '%ri%' OR major LIKE '%ri%';
+    ```
+
+123. In your script, add the command to print what the sentence is asking for.
+
+    ```bash
+    #!/bin/bash
+    #Info about my computer science students from students database
+    echo -e "\n~~ My Computer Science Students ~~\n"
+    PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+    echo -e "\nFirst name, last name, and GPA of students with a 4.0 GPA:"
+    echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE gpa = 4.0")"
+    echo -e "\nAll course names whose first letter is before 'D' in the alphabet:"
+    echo "$($PSQL "SELECT course FROM courses WHERE course < 'D'")"
+    echo -e "\nFirst name, last name, and GPA of students whose last name begins with an 'R' or after and have a GPA greater than 3.8 or less than 2.0:"
+    echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE last_name >= 'R' AND (gpa > 3.8 OR gpa < 2.0)")"
+    echo -e "\nLast name of students whose last name contains a case insensitive 'sa' or have an 'r' as the second to last letter:"
+    echo "$($PSQL "SELECT last_name FROM students WHERE last_name ILIKE '%sa%' or last_name LIKE '%r_'")"
+    echo -e "\nFirst name, last name, and GPA of students who have not selected a major and either their first name begins with 'D' or they have a GPA greater than 3.0:"
+    echo "$($PSQL "SELECT first_name, last_name, gpa FROM students WHERE major_id IS NULL and (first_name LIKE 'D%' or gpa > 3)")"
+    echo -e "\nCourse name of the first five courses, in reverse alphabetical order, that have an 'e' as the second letter or end with an 's':"
+    echo "$($PSQL "SELECT course FROM courses WHERE course LIKE '_e%' or course LIKE '%s' ORDER BY course DESC LIMIT 5")" 
+    echo -e "\nAverage GPA of all students rounded to two decimal places:"
+    echo "$($PSQL "SELECT ROUND(AVG(gpa), 2) FROM students")" 
+    echo -e "\nMajor ID, total number of students in a column named 'number_of_students', and average GPA rounded to two decimal places in a column name 'average_gpa', for each major ID in the students table having a student count greater than 1:"
+    echo "$($PSQL "SELECT major_id, count(*) as number_of_students, ROUND(AVG(gpa), 2) as average_gpa FROM students GROUP BY major_id HAVING count(*) > 1")"
+    echo -e "\nList of majors, in alphabetical order, that either no student is taking or has a student whose first name contains a case insensitive 'ma':"
+    echo "$($PSQL "SELECT major FROM students Left JOIN majors on majors.major_id = students.major_id WHERE (student_id IS NULL OR first_name ILIKE '%ma%') and major is not null ORDER BY major;")"
     ```
