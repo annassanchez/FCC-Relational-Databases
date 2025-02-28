@@ -172,3 +172,17 @@ SELECT * FROM students FULL JOIN majors on majors.major_id = students.major_id;
 SELECT * FROM students FULL JOIN majors on majors.major_id = students.major_id WHERE first_name LIKE '%ri%' OR major LIKE '%ri%';
 --#122. Finally, you only wanted to display the first_name and major columns. Enter the previous query, but only get the columns you need.
 SELECT first_name, major FROM students FULL JOIN majors on majors.major_id = students.major_id WHERE first_name LIKE '%ri%' OR major LIKE '%ri%';
+--#126. Lets go over a few more things before you figure out how to see the courses a student is taking. Start by doing a FULL JOIN on your students and majors tables.
+SELECT * FROM students FULL JOIN majors on majors.major_id = students.major_id;
+--#127. If you look at the column names, it shows two major_id columns. One from the students table and one from the majors table. If you were to try and query it using major_id, you would get an error. You would need to specify what table you want the column from like this: <table>.<column>. Enter the same join but only get the major_id column from the students table.
+SELECT students.major_id FROM students FULL JOIN majors on majors.major_id = students.major_id;
+--#128. Earlier, you used AS to rename columns. You can use it to rename tables, or give them aliases, as well. Here's an example: SELECT * FROM <table> AS <new_name>;. Enter the same query you just entered, but rename the majors table to m. Anywhere the majors table is referenced, you will need to use m instead of majors.
+SELECT students.major_id FROM students FULL JOIN majors as m on m.major_id = students.major_id;
+--#129. This doesn't affect the output. It can just make some queries easier to read. Enter the same query, but rename the students table to s as well.
+SELECT s.major_id FROM students as s FULL JOIN majors as m on m.major_id = s.major_id;
+--#130. There's a shortcut keyword, USING to join tables if the foreign key column has the same name in both tables. Here's an example: SELECT * FROM <table_1> FULL JOIN <table_2> USING(<column>);. Use this method to see all the columns in the students and majors table. Don't use any aliases.
+SELECT * FROM students FULL JOIN majors USING(major_id);
+--#131. Note that the two major_id columns were turned into one with USING. In order to find out what courses a student is taking, you will need to join all the tables together. You can add a third table to a join like this: SELECT * FROM <table_1> FULL JOIN <table_2> USING(<column>) FULL JOIN <table_3> USING(<column>). This example will join the first two tables into one, turning it into the left table for the second join. Use this method to join the two tables from the previous query with the majors_courses table.
+SELECT * FROM students FULL JOIN majors USING(major_id) FULL JOIN majors_courses USING(major_id);
+--#132. You may need to adjust the terminal size to align the output. What you're seeing is every unique combination of rows in the database. Students with a major are listed multiple times, one for each course included in the major. The majors without any students are there along with the courses for them. The students without a major are included, they have no courses and are only listed once. You can join as many tables together as you want. Join the last table to the previous command to get the names of the courses with all this info.
+SELECT * FROM students FULL JOIN majors USING(major_id) FULL JOIN majors_courses USING(major_id) FULL JOIN courses USING(course_id);

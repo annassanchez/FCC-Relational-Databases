@@ -595,3 +595,5 @@ echo "$($PSQL "SELECT DISTINCT(course) FROM students RIGHT JOIN majors USING(maj
 echo -e "\nList of courses, in alphabetical order, with only one student enrolled:"
 echo "$($PSQL "SELECT course FROM students RIGHT JOIN majors USING(major_id) INNER JOIN majors_courses USING(major_id) INNER JOIN courses USING(course_id) GROUP BY course HAVING count(student_id) = 1 ORDER BY course;
 ")"
+#136. This is the last step, you have done really well. Run the script one last time. 👋
+./student_info.sh
