@@ -159,3 +159,6 @@ echo "$($PSQL "SELECT g.year, t.name FROM teams as t INNER JOIN games as g ON g.
 
 echo -e "\nList of teams that start with 'Co':"
 echo "$($PSQL "SELECT name FROM teams WHERE name LIKE 'Co%'")"
+#db dump
+pg_dump --clean --create --inserts --username=freecodecamp worldcup > 
+worldcup.sql
