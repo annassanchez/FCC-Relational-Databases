@@ -19,3 +19,4 @@ ALTER TABLE games ADD FOREIGN KEY(opponent_id) REFERENCES teams(team_id);
 --9. added columns to games table
 ALTER TABLE games ADD COLUMN winner_goals int NOT NULL;
 ALTER TABLE games ADD COLUMN opponent_goals int NOT NULL;
+
